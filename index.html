@@ -87,6 +87,8 @@
     .card .content { padding: 18px; display:flex; flex-direction:column; gap:10px; }
     .card ul { margin: 0; padding-left: 18px; color: var(--muted); }
     .card li { margin: 4px 0; }
+    .room-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+    .card li { margin: 4px 0; }
 
     /* Gallery */
     .gallery { display:grid; gap:12px; grid-template-columns: repeat(2, 1fr); }
@@ -219,7 +221,7 @@
       <p class="section-sub reveal">Four individual spaces around the pool. Quiet, natural materials and plenty of greenery — made for unhurried days.</p>
       <div class="grid grid-4">
         <article class="card reveal">
-          <img src="assets/rooms/peacock-1.jpg" alt="Peacock Villa – terrace into the trees">
+          <img src="assets/rooms/peacock/cover.jpg" alt="Peacock Villa – bright bedroom with greenery views">
           <div class="content">
             <h3>Peacock Villa</h3>
             <p>Private villa with a generous terrace facing the treetops; open‑air rain shower and soaking tub. A slow‑living space for longer stays.</p>
@@ -228,10 +230,13 @@
               <li>Terrace with canopy views</li>
               <li>Air‑conditioning • Wi‑Fi</li>
             </ul>
+            <div class="room-actions">
+              <a href="#" class="btn btn-ghost" data-room="peacock">View photos</a>
+            </div>
           </div>
         </article>
         <article class="card reveal">
-          <img src="assets/rooms/monkey-1.jpg" alt="Monkey Villa – bright bedroom and semi‑open bathroom">
+          <img src="assets/rooms/monkey/cover.jpg" alt="Monkey Villa – garden views with semi‑open bathroom">
           <div class="content">
             <h3>Monkey Villa</h3>
             <p>Airy villa with a semi‑open bathroom and garden views. Morning coffee on the terrace, birds in the trees.</p>
@@ -240,10 +245,13 @@
               <li>Private terrace to the garden</li>
               <li>Air‑conditioning • Wi‑Fi</li>
             </ul>
+            <div class="room-actions">
+              <a href="#" class="btn btn-ghost" data-room="monkey">View photos</a>
+            </div>
           </div>
         </article>
         <article class="card reveal">
-          <img src="assets/rooms/mango-1.jpg" alt="Green Mango Bungalow – cozy jungle room near the pool">
+          <img src="assets/rooms/mango/cover.jpg" alt="Green Mango Bungalow – cozy jungle room near the pool">
           <div class="content">
             <h3>Green Mango Bungalow</h3>
             <p>Cozy bungalow close to the pool with a private patio. Calming tones, natural textures and good light.</p>
@@ -252,6 +260,9 @@
               <li>Private patio</li>
               <li>Air‑conditioning • Wi‑Fi</li>
             </ul>
+            <div class="room-actions">
+              <a href="#" class="btn btn-ghost" data-room="mango">View photos</a>
+            </div>
           </div>
         </article>
         <article class="card reveal">
@@ -264,6 +275,9 @@
               <li>Patio tucked into green</li>
               <li>Air‑conditioning • Wi‑Fi</li>
             </ul>
+            <div class="room-actions">
+              <a href="#" class="btn btn-ghost" data-room="lotus">View photos</a>
+            </div>
           </div>
         </article>
       </div>
@@ -283,7 +297,9 @@
         <a href="#" data-full="assets/gallery/5.jpg" class="reveal"><img src="assets/gallery/5.jpg" alt="Fresh coconuts by the pool"></a>
         <a href="#" data-full="assets/gallery/6.jpg" class="reveal"><img src="assets/gallery/6.jpg" alt="Pool at dusk with loungers"></a>
         <a href="#" data-full="assets/gallery/7.jpg" class="reveal"><img src="assets/gallery/7.jpg" alt="Asian water monitor in the garden"></a>
-        <a href="#" data-full="assets/gallery/8.jpg" class="reveal"><img src="assets/gallery/8.jpg" alt="Welcome drink and frangipani by the pool"></a>
+        <a href="#" data-full="assets/gallery/8.jpg" class="reveal"><img src="assets/gallery/8.jpg" alt="Welcome drink tray with frangipani by the pool"></a>
+        <a href="#" data-full="assets/gallery/9.jpg" class="reveal"><img src="assets/gallery/9.jpg" alt="Monkeys resting in the trees"></a>
+        <a href="#" data-full="assets/gallery/10.jpg" class="reveal"><img src="assets/gallery/10.jpg" alt="Tropical breakfast spread with coconuts and fruit"></a>
       </div>
     </div>
   </section>
@@ -416,7 +432,10 @@
   <!-- Lightbox overlay -->
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image viewer">
     <div class="close" id="lightboxClose" aria-label="Close">×</div>
+    <button class="close" id="lightboxPrev" style="left:18px; right:auto;">‹</button>
     <img id="lightboxImg" alt="Large view">
+    <button class="close" id="lightboxNext" style="right:18px;">›</button>
+    <div id="lightboxCap" style="position:absolute;left:0;right:0;bottom:10px;text-align:center;color:#eef5f0;font-weight:700;"></div>
   </div>
 
   <!-- Modal: Direct booking / Pop-up -->
@@ -465,15 +484,76 @@
     }, { threshold: .18 });
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-    // Lightbox
+    // Lightbox with navigation (works for Gallery and Room galleries)
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
     const lbClose = document.getElementById('lightboxClose');
-    document.querySelectorAll('#gallery a').forEach(a=>{
-      a.addEventListener('click', (e)=>{ e.preventDefault(); lbImg.src = a.dataset.full; lb.style.display='flex'; });
+    const lbPrev = document.getElementById('lightboxPrev');
+    const lbNext = document.getElementById('lightboxNext');
+    const lbCap = document.getElementById('lightboxCap');
+
+    let currentList = []; let currentIndex = 0; let currentCaption = '';
+    function show(index){
+      if(!currentList.length) return;
+      currentIndex = (index + currentList.length) % currentList.length;
+      lbImg.src = currentList[currentIndex];
+      lbCap.textContent = currentCaption || '';
+      lb.style.display='flex';
+    }
+    function closeLb(){ lb.style.display='none'; currentList=[]; currentCaption=''; }
+
+    // Open from Gallery thumbnails
+    document.querySelectorAll('#gallery a').forEach((a,idx)=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        currentList = Array.from(document.querySelectorAll('#gallery a')).map(x=>x.dataset.full);
+        currentCaption = a.querySelector('img')?.alt || '';
+        show(idx);
+      });
     });
-    lbClose.addEventListener('click', ()=> lb.style.display='none');
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) lb.style.display='none'; });
+
+    // Open from Room buttons (placeholder file names; upload to these paths)
+    const roomGalleries = {
+      peacock: [
+        'assets/rooms/peacock/1.jpg',
+        'assets/rooms/peacock/2.jpg',
+        'assets/rooms/peacock/3.jpg',
+        'assets/rooms/peacock/4.jpg',
+        'assets/rooms/peacock/5.jpg',
+        'assets/rooms/peacock/6.jpg',
+        'assets/rooms/peacock/7.jpg',
+        'assets/rooms/peacock/8.jpg',
+        'assets/rooms/peacock/9.jpg',
+        'assets/rooms/peacock/10.jpg',
+        'assets/rooms/peacock/11.jpg',
+        'assets/rooms/peacock/12.jpg'
+      ],
+      monkey: [
+        'assets/rooms/monkey/1.jpg','assets/rooms/monkey/2.jpg','assets/rooms/monkey/3.jpg','assets/rooms/monkey/4.jpg',
+        'assets/rooms/monkey/5.jpg','assets/rooms/monkey/6.jpg','assets/rooms/monkey/7.jpg','assets/rooms/monkey/8.jpg',
+        'assets/rooms/monkey/9.jpg','assets/rooms/monkey/10.jpg','assets/rooms/monkey/11.jpg','assets/rooms/monkey/12.jpg'
+      ],
+      mango: [
+        'assets/rooms/mango/1.jpg','assets/rooms/mango/2.jpg','assets/rooms/mango/3.jpg','assets/rooms/mango/4.jpg',
+        'assets/rooms/mango/5.jpg','assets/rooms/mango/6.jpg','assets/rooms/mango/7.jpg','assets/rooms/mango/8.jpg'
+      ],
+      lotus:   Array.from({length:9},  (_,i)=>`assets/rooms/lotus/${i+1}.jpg`)
+    };
+    document.querySelectorAll('[data-room]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const key = btn.getAttribute('data-room');
+        currentList = roomGalleries[key] || [];
+        currentCaption = btn.closest('.card')?.querySelector('h3')?.textContent || '';
+        show(0);
+      });
+    });
+
+    lbPrev.addEventListener('click', ()=> show(currentIndex-1));
+    lbNext.addEventListener('click', ()=> show(currentIndex+1));
+    lbClose.addEventListener('click', closeLb);
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLb(); });
+    document.addEventListener('keydown', (e)=>{ if(lb.style.display==='flex'){ if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') show(currentIndex-1); if(e.key==='ArrowRight') show(currentIndex+1); } });('click', (e)=>{ if(e.target===lb) lb.style.display='none'; });
 
     // Modal logic
     const backdrop = document.getElementById('modalBackdrop');
@@ -544,6 +624,51 @@
   <!-- Optional cookie‑free analytics (e.g., Cloudflare Web Analytics) -->
   <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script> -->
 
+
+  <!-- Availability (Google Calendar embed) -->
+  <section id="availability" class="section container">
+    <h2 class="section-title">Availability</h2>
+    <div class="calendar-embed">
+      <!-- Paste your Google Calendar embed URL below -->
+      <iframe id="availabilityCalendar" src="REPLACE_WITH_GOOGLE_CALENDAR_EMBED_URL" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
+    </div>
+    <p class="muted">This calendar shows booked dates synced from Airbnb/Booking via iCal. For the most accurate information, contact us directly.</p>
+  </section>
+
+  <!-- Quick contact (email & WhatsApp placeholders) -->
+  <section id="quick-contact" class="section container">
+    <h3 class="section-subtitle">Book direct</h3>
+    <ul class="contact-pill">
+      <li>Email: <a href="mailto:jungleloftball@gmail.com">jungleloftball@gmail.com</a></li>
+      <li>WhatsApp: <a id="whatsappLink" href="https://wa.me/REPLACE_WHATSAPP" target="_blank" rel="noopener">+94&nbsp;…</a></li>
+    </ul>
+  </section>
+
+  <script>
+    // Remove any old cancellation policy (e.g., "cancel by 6pm" etc.)
+    (function(){
+      const killers = Array.from(document.querySelectorAll('li, p')).filter(el => /cancell|storno|stornier|6\s*pm/i.test(el.textContent));
+      killers.forEach(el => el.remove());
+    })();
+
+    // Ensure Formspree submissions include a clear subject + reply-to
+    (function(){
+      const form = document.getElementById('contactForm');
+      if(form){
+        form.addEventListener('submit', function(){
+          const s = document.createElement('input');
+          s.type = 'hidden'; s.name = '_subject'; s.value = 'Booking enquiry — The Jungle Loft';
+          this.appendChild(s);
+          const email = this.querySelector('input[type=email]');
+          if(email){
+            const r = document.createElement('input');
+            r.type = 'hidden'; r.name = '_replyto'; r.value = email.value;
+            this.appendChild(r);
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
 
