@@ -88,7 +88,6 @@
     .card ul { margin: 0; padding-left: 18px; color: var(--muted); }
     .card li { margin: 4px 0; }
     .room-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
-    .card li { margin: 4px 0; }
 
     /* Gallery */
     .gallery { display:grid; gap:12px; grid-template-columns: repeat(2, 1fr); }
@@ -133,6 +132,13 @@
     label { font-weight:700; font-size:14px; }
     .two { display:grid; gap:12px; grid-template-columns: 1fr; }
     @media (min-width: 700px){ .two { grid-template-columns: 1fr 1fr; } }
+
+    /* Availability tabs */
+    .cal-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px}
+    .cal-tab{padding:8px 12px;border:1px solid #d8e0d8;border-radius:999px;background:white;font-weight:700;cursor:pointer}
+    .cal-tab.active{background:var(--primary);color:#fff;border-color:transparent}
+    .cal-frame{display:none}
+    .cal-frame.active{display:block}
   </style>
 </head>
 <body>
@@ -164,7 +170,7 @@
   <section class="hero" aria-label="Intro">
     <div class="hero-video">
       <video id="heroVideo" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
-        <source src="assets/hero.webm" type="video/webm" />
+        <source src="assets/hero.mov" type="video/mov" />
         <source src="assets/hero.mp4" type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
@@ -179,7 +185,7 @@
             <div class="chip">Only 4 rooms</div>
           </div>
           <div style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-            <a class="btn btn-primary" href="#book">Check availability</a>
+            <a class="btn btn-primary" href="#availability">Check availability</a>
             <a class="btn btn-ghost" href="#rooms">Explore the rooms</a>
           </div>
         </div>
@@ -197,7 +203,7 @@
       <div class="reveal">
         <h2 class="section-title">A small sanctuary of green</h2>
         <p class="section-sub">On the edge of the jungle in Wanchawala, The Jungle Loft feels calm and close to nature — with palms, frangipani and birdsong around a quiet pool. From here, beaches and Galle Fort are just a short ride away.</p>
-        <p>Our four stays — <em>Peacock Villa</em>, <em>Monkey Villa</em>, <em>Green Mango</em> and <em>Lotus</em> — are crafted in a warm, natural palette with hand‑picked antiques, local wood and soft linens. Morning light filters through the leaves, evenings are for tea on the terrace.</p>
+        <p>Our four stays — <em>Peacock Villa</em>, <em>Monkey Villa</em>, <em>Tropical Mango Bungalow</em> and <em>Golden Lotus Bungalow</em> — are crafted in a warm, natural palette with hand‑picked antiques, local wood and soft linens. Morning light filters through the leaves, evenings are for tea on the terrace.</p>
       </div>
       <div class="card reveal">
         <img src="assets/place.jpg" alt="Open veranda with antique chest and garden view" />
@@ -251,9 +257,9 @@
           </div>
         </article>
         <article class="card reveal">
-          <img src="assets/rooms/mango/cover.jpg" alt="Green Mango Bungalow – cozy jungle room near the pool">
+          <img src="assets/rooms/mango/cover.jpg" alt="Tropical Mango Bungalow – cozy jungle room near the pool">
           <div class="content">
-            <h3>Green Mango Bungalow</h3>
+            <h3>Tropical Mango Bungalow</h3>
             <p>Cozy bungalow close to the pool with a private patio. Calming tones, natural textures and good light.</p>
             <ul>
               <li>Queen bed • Rain shower</li>
@@ -266,9 +272,9 @@
           </div>
         </article>
         <article class="card reveal">
-          <img src="assets/rooms/lotus-1.jpg" alt="Lotus Bungalow – serene bedroom in greenery">
+          <img src="assets/rooms/lotus-1.jpg" alt="Golden Lotus Bungalow – serene bedroom in greenery">
           <div class="content">
-            <h3>Lotus Bungalow</h3>
+            <h3>Golden Lotus Bungalow</h3>
             <p>Quiet bungalow embraced by greenery — a restful space for reading, napping and slow mornings.</p>
             <ul>
               <li>Queen bed • Rain shower</li>
@@ -352,8 +358,8 @@
             <select id="roomtype" name="roomtype">
               <option>Peacock Villa</option>
               <option>Monkey Villa</option>
-              <option>Green Mango Bungalow</option>
-              <option>Lotus Bungalow</option>
+              <option>Tropical Mango Bungalow</option>
+              <option>Golden Lotus Bungalow</option>
             </select>
           </div>
         </div>
@@ -374,15 +380,34 @@
         <img loading="lazy" src="assets/offer.jpg" alt="Welcome drink tray by the pool" style="height:220px; width:320px; object-fit:cover;">
         <div class="content" style="flex:1;">
           <h3>Direct booking benefits</h3>
-          <p>Always the best rate — plus a welcome drink. Most bookings are fully refundable until 6 pm the day before.*</p>
+          <p>Always the best rate — plus a welcome drink.</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
             <a class="btn btn-primary" href="#" id="openModal">Get offer</a>
             <a class="btn btn-ghost" href="#contact">Request without obligation</a>
           </div>
-          <small style="color:var(--muted)">*Example text — adjust conditions.</small>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- AVAILABILITY under Direct booking -->
+  <section id="availability" class="section container">
+    <h2 class="section-title">Availability</h2>
+    <p class="section-sub">Check live availability for each room. Connect your Google Calendar embeds below.</p>
+    <div class="cal-tabs" role="tablist" aria-label="Room calendars">
+      <button class="cal-tab active" data-target="peacock" role="tab" aria-selected="true">Peacock Villa</button>
+      <button class="cal-tab" data-target="monkey" role="tab" aria-selected="false">Monkey Villa</button>
+      <button class="cal-tab" data-target="mango" role="tab" aria-selected="false">Tropical Mango</button>
+      <button class="cal-tab" data-target="lotus" role="tab" aria-selected="false">Golden Lotus</button>
+    </div>
+    <div class="cal-frames">
+      <!-- Replace each src with your Google Calendar embed URL for that room -->
+      <iframe class="cal-frame active" id="cal-peacock" title="Peacock Villa calendar" src="REPLACE_CAL_PEACOCK" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
+      <iframe class="cal-frame" id="cal-monkey" title="Monkey Villa calendar" src="REPLACE_CAL_MONKEY" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
+      <iframe class="cal-frame" id="cal-mango" title="Tropical Mango calendar" src="REPLACE_CAL_MANGO" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
+      <iframe class="cal-frame" id="cal-lotus" title="Golden Lotus calendar" src="REPLACE_CAL_LOTUS" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
+    </div>
+    <p class="muted">Each calendar can be synced from Airbnb/Booking via iCal → Google Calendar. Click a tab to switch rooms.</p>
   </section>
 
   <!-- FAQ -->
@@ -414,7 +439,7 @@
       </div>
       <div id="imprint" style="font-size:14px; opacity:.9;">
         <strong>Imprint (placeholder):</strong>
-        <span>The Jungle Loft, Wattagewatta, Kaduruduwa, Wanchawala, 80120 Galle, Sri Lanka · Phone: +94 … · Email: hello@your-domain.com</span>
+        <span>The Jungle Loft, Wattagewatta, Kaduruduwa, Wanchawala, 80120 Galle, Sri Lanka · WhatsApp / Phone: +94 77 737 4747 · Email: jungleloftgalle@gmail.com</span>
       </div>
       <div id="privacy" style="font-size:14px; opacity:.9;">
         <strong>Privacy (placeholder):</strong>
@@ -468,7 +493,7 @@
     // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Leaflet map (precise coords you gave me)
+    // Leaflet map (precise coords)
     const map = L.map('map', { scrollWheelZoom: false });
     const coords = [6.035811150545621, 80.25820113867027];
     map.setView(coords, 13);
@@ -484,7 +509,7 @@
     }, { threshold: .18 });
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-    // Lightbox with navigation (works for Gallery and Room galleries)
+    // Lightbox with navigation
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
     const lbClose = document.getElementById('lightboxClose');
@@ -512,21 +537,12 @@
       });
     });
 
-    // Open from Room buttons (placeholder file names; upload to these paths)
+    // Open from Room buttons
     const roomGalleries = {
       peacock: [
-        'assets/rooms/peacock/1.jpg',
-        'assets/rooms/peacock/2.jpg',
-        'assets/rooms/peacock/3.jpg',
-        'assets/rooms/peacock/4.jpg',
-        'assets/rooms/peacock/5.jpg',
-        'assets/rooms/peacock/6.jpg',
-        'assets/rooms/peacock/7.jpg',
-        'assets/rooms/peacock/8.jpg',
-        'assets/rooms/peacock/9.jpg',
-        'assets/rooms/peacock/10.jpg',
-        'assets/rooms/peacock/11.jpg',
-        'assets/rooms/peacock/12.jpg'
+        'assets/rooms/peacock/1.jpg','assets/rooms/peacock/2.jpg','assets/rooms/peacock/3.jpg','assets/rooms/peacock/4.jpg',
+        'assets/rooms/peacock/5.jpg','assets/rooms/peacock/6.jpg','assets/rooms/peacock/7.jpg','assets/rooms/peacock/8.jpg',
+        'assets/rooms/peacock/9.jpg','assets/rooms/peacock/10.jpg','assets/rooms/peacock/11.jpg','assets/rooms/peacock/12.jpg'
       ],
       monkey: [
         'assets/rooms/monkey/1.jpg','assets/rooms/monkey/2.jpg','assets/rooms/monkey/3.jpg','assets/rooms/monkey/4.jpg',
@@ -537,7 +553,7 @@
         'assets/rooms/mango/1.jpg','assets/rooms/mango/2.jpg','assets/rooms/mango/3.jpg','assets/rooms/mango/4.jpg',
         'assets/rooms/mango/5.jpg','assets/rooms/mango/6.jpg','assets/rooms/mango/7.jpg','assets/rooms/mango/8.jpg'
       ],
-      lotus:   Array.from({length:9},  (_,i)=>`assets/rooms/lotus/${i+1}.jpg`)
+      lotus: Array.from({length:9},  (_,i)=>`assets/rooms/lotus/${i+1}.jpg`)
     };
     document.querySelectorAll('[data-room]').forEach(btn=>{
       btn.addEventListener('click', (e)=>{
@@ -553,7 +569,7 @@
     lbNext.addEventListener('click', ()=> show(currentIndex+1));
     lbClose.addEventListener('click', closeLb);
     lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLb(); });
-    document.addEventListener('keydown', (e)=>{ if(lb.style.display==='flex'){ if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') show(currentIndex-1); if(e.key==='ArrowRight') show(currentIndex+1); } });('click', (e)=>{ if(e.target===lb) lb.style.display='none'; });
+    document.addEventListener('keydown', (e)=>{ if(lb.style.display==='flex'){ if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') show(currentIndex-1); if(e.key==='ArrowRight') show(currentIndex+1); } });
 
     // Modal logic
     const backdrop = document.getElementById('modalBackdrop');
@@ -591,6 +607,22 @@
     setMuteLabel(); setPauseLabel();
     muteBtn.addEventListener('click', ()=>{ vid.muted = !vid.muted; setMuteLabel(); });
     pauseBtn.addEventListener('click', ()=>{ if(vid.paused){ vid.play(); } else { vid.pause(); } setPauseLabel(); });
+
+    // Availability tabs logic
+    (function(){
+      const tabs = document.querySelectorAll('.cal-tab');
+      const frames = {
+        peacock: document.getElementById('cal-peacock'),
+        monkey: document.getElementById('cal-monkey'),
+        mango: document.getElementById('cal-mango'),
+        lotus: document.getElementById('cal-lotus')
+      };
+      function activate(key){
+        tabs.forEach(t=>{ const on=t.dataset.target===key; t.classList.toggle('active', on); t.setAttribute('aria-selected', on? 'true':'false'); });
+        Object.entries(frames).forEach(([k,el])=> el.classList.toggle('active', k===key));
+      }
+      tabs.forEach(t=> t.addEventListener('click', ()=> activate(t.dataset.target)));
+    })();
   </script>
 
   <!-- SEO: structured data (Schema.org) -->
@@ -607,7 +639,8 @@
       "postalCode": "80120",
       "addressCountry": "LK"
     },
-    "telephone": "+94-..",
+    "telephone": "+94-77-737-4747",
+    "email": "jungleloftgalle@gmail.com",
     "url": "https://www.your-domain.com",
     "numberOfRooms": 4,
     "amenityFeature": [
@@ -621,54 +654,7 @@
   }
   </script>
 
-  <!-- Optional cookie‑free analytics (e.g., Cloudflare Web Analytics) -->
-  <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script> -->
-
-
-  <!-- Availability (Google Calendar embed) -->
-  <section id="availability" class="section container">
-    <h2 class="section-title">Availability</h2>
-    <div class="calendar-embed">
-      <!-- Paste your Google Calendar embed URL below -->
-      <iframe id="availabilityCalendar" src="REPLACE_WITH_GOOGLE_CALENDAR_EMBED_URL" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
-    </div>
-    <p class="muted">This calendar shows booked dates synced from Airbnb/Booking via iCal. For the most accurate information, contact us directly.</p>
-  </section>
-
-  <!-- Quick contact (email & WhatsApp placeholders) -->
-  <section id="quick-contact" class="section container">
-    <h3 class="section-subtitle">Book direct</h3>
-    <ul class="contact-pill">
-      <li>Email: <a href="mailto:jungleloftball@gmail.com">jungleloftball@gmail.com</a></li>
-      <li>WhatsApp: <a id="whatsappLink" href="https://wa.me/REPLACE_WHATSAPP" target="_blank" rel="noopener">+94&nbsp;…</a></li>
-    </ul>
-  </section>
-
-  <script>
-    // Remove any old cancellation policy (e.g., "cancel by 6pm" etc.)
-    (function(){
-      const killers = Array.from(document.querySelectorAll('li, p')).filter(el => /cancell|storno|stornier|6\s*pm/i.test(el.textContent));
-      killers.forEach(el => el.remove());
-    })();
-
-    // Ensure Formspree submissions include a clear subject + reply-to
-    (function(){
-      const form = document.getElementById('contactForm');
-      if(form){
-        form.addEventListener('submit', function(){
-          const s = document.createElement('input');
-          s.type = 'hidden'; s.name = '_subject'; s.value = 'Booking enquiry — The Jungle Loft';
-          this.appendChild(s);
-          const email = this.querySelector('input[type=email]');
-          if(email){
-            const r = document.createElement('input');
-            r.type = 'hidden'; r.name = '_replyto'; r.value = email.value;
-            this.appendChild(r);
-          }
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
+
 
