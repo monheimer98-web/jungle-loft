@@ -48,6 +48,8 @@
     a { color: var(--primary-600); text-decoration: none; }
     .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
 
+    .muted { color: var(--muted); font-size:13px; }
+
     /* Header */
     header { position: sticky; top: 0; z-index: 60; background: rgba(246,245,240,.75); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(12,28,20,.06); }
     .nav { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap:18px; padding: 14px 0; }
@@ -77,23 +79,59 @@
     .hero-ctrls button { backdrop-filter: blur(6px); background: rgba(255,255,255,.9); border:1px solid #e4e1d8; border-radius: 999px; padding:8px 10px; font-weight:700; cursor:pointer; }
 
     /* Reviews under hero */
-    .reviews { background:#0d1a12; color:#e7efe9; padding:36px 0 44px; }
-    .reviews .score { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:14px; }
+    .reviews {
+      padding: 60px 0 70px;
+      background: linear-gradient(180deg, rgba(13,26,18,.04) 0%, rgba(13,26,18,.14) 100%);
+    }
+    .reviews .container {
+      background:#0d1a12;
+      border-radius: var(--radius-xl);
+      padding:22px 22px 24px;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.05);
+      color:#e7efe9;
+      position:relative;
+      overflow:hidden;
+    }
+    .reviews .container::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top left, rgba(201,176,138,.28), transparent 55%);
+      pointer-events:none;
+    }
+    .reviews .container > * {
+      position:relative;
+      z-index:1;
+    }
+    .reviews .score { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:10px; }
     .reviews .stars { font-size:22px; letter-spacing:2px; }
     .reviews .score-text { font-size:13px; opacity:.9; }
-    .review-links { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; margin-bottom:10px; }
-    .review-links a { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid rgba(231,239,233,.3); color:#e7efe9; }
+    .review-links { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; margin-bottom:8px; }
+    .review-links a { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid rgba(231,239,233,.26); color:#e7efe9; background:rgba(8,18,12,.85); }
     .review-links span.icon { font-size:16px; }
-    .reviews-slider { position:relative; margin-top:10px; }
-    .review-slide { display:none; }
-    .review-slide.active { display:block; }
+    .reviews-slider { position:relative; margin-top:14px; min-height:150px; }
+    .review-slide {
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transform:translateY(6px);
+      transition:opacity .45s ease, transform .45s ease;
+      pointer-events:none;
+    }
+    .review-slide.active {
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
     .review-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:13px; opacity:.9; margin-bottom:4px; }
     .review-text { font-size:15px; line-height:1.6; }
-    .review-nav { margin-top:14px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .review-nav { margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .review-buttons { display:flex; gap:8px; }
-    .review-btn { background:transparent; border:1px solid rgba(231,239,233,.6); border-radius:999px; padding:5px 12px; color:#e7efe9; cursor:pointer; font-size:13px; }
+    .review-btn { background:rgba(8,18,12,.9); border:1px solid rgba(231,239,233,.5); border-radius:999px; padding:5px 12px; color:#e7efe9; cursor:pointer; font-size:13px; }
+    .review-btn:hover { background:rgba(231,239,233,.06); }
     .review-dots { display:flex; gap:6px; }
-    .review-dot { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.3); border:none; padding:0; cursor:pointer; }
+    .review-dot { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.32); border:none; padding:0; cursor:pointer; }
     .review-dot.active { background:#fff; }
 
     /* Reveal on scroll */
@@ -108,6 +146,10 @@
     /* Two-column text */
     .two-col { display:grid; gap:22px; grid-template-columns: 1fr; }
     @media (min-width: 960px){ .two-col { grid-template-columns: 1.1fr .9fr; align-items:center; } }
+    /* Experiences: Bild links schmaler, Text rechts breiter */
+    @media (min-width: 960px){
+      #experiences .two-col { grid-template-columns: .9fr 1.1fr; }
+    }
 
     /* Cards grid */
     .grid { display:grid; gap: 22px; }
@@ -167,21 +209,27 @@
     /* Floating WhatsApp button */
     .whatsapp-float {
       position:fixed;
-      bottom:90px;
-      right:16px;
-      width:56px;
-      height:56px;
-      border-radius:50%;
+      bottom:88px;
+      right:18px;
+      min-width:64px;
+      height:64px;
+      padding:0 18px;
+      border-radius:999px;
       background:#25D366;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      box-shadow:0 12px 28px rgba(0,0,0,.28);
       z-index:95;
       color:#fff;
       font-weight:700;
+      border:1px solid rgba(255,255,255,.4);
     }
-    .whatsapp-float span { font-size:26px; line-height:1; }
+    .whatsapp-float .icon { font-size:26px; line-height:1; }
+    .whatsapp-float .label { display:none; margin-left:8px; font-size:14px; letter-spacing:.02em; }
+    @media (min-width: 720px){
+      .whatsapp-float .label { display:inline; }
+    }
     .whatsapp-float:hover { filter:brightness(1.05); }
 
     /* Modal (Popup) */
@@ -256,7 +304,7 @@
           </div>
           <div style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
             <a class="btn btn-primary" href="#availability">Check availability</a>
-            <a class="btn btn-ghost" href="#rooms">Explore the rooms</a>
+            <a class="btn btn-primary" href="#rooms">Explore the rooms</a>
           </div>
         </div>
       </div>
@@ -496,6 +544,15 @@
   <!-- EXPERIENCES -->
   <section id="experiences" aria-label="Experiences">
     <div class="container two-col">
+      <!-- Bild links -->
+      <div class="card reveal">
+        <img src="assets/experiences/massage.jpg" alt="In-room massage experience at The Jungle Loft">
+        <div class="content">
+          <h3>Relax, explore, repeat</h3>
+          <p>Tell us what you’d love to experience — from a sunset tuk tuk ride to a full Sri Lankan spa ritual — and we’ll take care of the rest.</p>
+        </div>
+      </div>
+      <!-- Text rechts -->
       <div class="reveal">
         <h2 class="section-title">Experiences – More than a stay</h2>
         <p class="section-sub">Make your time in the jungle extra special. From in-room massages and private dinners to cooking classes, transfers and day trips — we’ll arrange everything for you.</p>
@@ -506,13 +563,6 @@
           <li>Airport transfers &amp; local rides</li>
           <li>Whale watching, cycling, vintage city tours</li>
         </ul>
-      </div>
-      <div class="card reveal">
-        <img src="assets/experiences/massage.jpg" alt="In-room massage experience at The Jungle Loft">
-        <div class="content">
-          <h3>Relax, explore, repeat</h3>
-          <p>Tell us what you’d love to experience — from a sunset tuk tuk ride to a full Sri Lankan spa ritual — and we’ll take care of the rest.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -747,7 +797,7 @@
 
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/94771346185" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" title="Message us on WhatsApp">
-    <span>✆</span>
+    <span class="icon">💬</span><span class="label">WhatsApp</span>
   </a>
 
   <!-- Lightbox overlay -->
@@ -941,12 +991,12 @@
 
       showReview(0);
 
-      let timer = setInterval(()=> showReview(index+1), 14000);
+      let timer = setInterval(()=> showReview(index+1), 9000);
       const slider = document.querySelector('.reviews-slider');
       slider?.addEventListener('mouseenter', ()=> { clearInterval(timer); });
       slider?.addEventListener('mouseleave', ()=> {
         clearInterval(timer);
-        timer = setInterval(()=> showReview(index+1), 14000);
+        timer = setInterval(()=> showReview(index+1), 9000);
       });
     })();
   </script>
