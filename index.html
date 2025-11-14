@@ -943,15 +943,32 @@
     // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Leaflet map
-    const map = L.map('map', { scrollWheelZoom: false });
-    const coords = [6.035811150545621, 80.25820113867027];
-    map.setView(coords, 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    L.marker(coords).addTo(map).bindPopup('<b>The Jungle Loft</b><br>Wanchawala, Galle');
+   // Leaflet map
+const map = L.map('map', { scrollWheelZoom: false });
+const coords = [6.035811150545621, 80.25820113867027];
+
+// Google-Maps-Link (kannst du auch durch deinen Place-Link ersetzen)
+const googleMapsUrl = `https://www.google.com/maps?q=${coords[0]},${coords[1]}`;
+
+map.setView(coords, 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+const marker = L.marker(coords)
+  .addTo(map)
+  .bindPopup('<b>The Jungle Loft</b><br>Wanchawala, Galle');
+
+// Funktion zum Öffnen von Google Maps
+function openGoogleMaps() {
+  window.open(googleMapsUrl, '_blank');
+}
+
+// Klicks weiterleiten
+marker.on('click', openGoogleMaps);
+map.on('click', openGoogleMaps);
+
 
     // Reveal on scroll
     const observer = new IntersectionObserver((entries)=>{
