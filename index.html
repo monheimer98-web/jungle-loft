@@ -110,22 +110,16 @@
     .review-links { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; margin-bottom:8px; }
     .review-links a { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid rgba(231,239,233,.26); color:#e7efe9; background:rgba(8,18,12,.85); }
     .review-links span.icon { font-size:16px; }
-    .reviews-slider { position:relative; margin-top:14px; min-height:150px; }
+
+    .reviews-slider { position:relative; margin-top:14px; overflow:hidden; }
+    .reviews-track { display:flex; transition: transform .6s cubic-bezier(.25,.8,.25,1); will-change: transform; }
     .review-slide {
-      position:absolute;
-      inset:0;
-      opacity:0;
-      transform:translateY(6px);
-      transition:opacity .45s ease, transform .45s ease;
-      pointer-events:none;
-    }
-    .review-slide.active {
-      opacity:1;
-      transform:translateY(0);
-      pointer-events:auto;
+      flex:0 0 100%;
+      padding-right:4px;
     }
     .review-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:13px; opacity:.9; margin-bottom:4px; }
     .review-text { font-size:15px; line-height:1.6; }
+
     .review-nav { margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .review-buttons { display:flex; gap:8px; }
     .review-btn { background:rgba(8,18,12,.9); border:1px solid rgba(231,239,233,.5); border-radius:999px; padding:5px 12px; color:#e7efe9; cursor:pointer; font-size:13px; }
@@ -175,6 +169,7 @@
     /* Experiences */
     .experiences-list { margin:0; padding-left:18px; color:var(--muted); }
     .experiences-list li { margin:4px 0; }
+    .experiences-actions { margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; }
 
     /* Lightbox */
     .lightbox { position: fixed; inset: 0; background: rgba(7,20,14,.8); display:none; align-items:center; justify-content:center; z-index: 80; padding: 24px; }
@@ -215,7 +210,7 @@
       height:64px;
       padding:0 18px;
       border-radius:999px;
-      background:#25D366;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -322,14 +317,14 @@
         <div class="stars">★★★★★</div>
         <div>
           <div style="font-weight:700;">5.0 / 5.0 – Guest rating</div>
-          <div class="score-text">Based on reviews from Airbnb, Google & TripAdvisor</div>
+          <div class="score-text">Based on reviews from Airbnb, Google &amp; TripAdvisor</div>
         </div>
       </div>
       <div class="review-links">
         <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">
           <span class="icon">🅣</span><span>TripAdvisor</span>
         </a>
-        <a href="https://www.google.com/maps/place/The+Jungle+Loft+-+Galle/@6.0355871,80.2582226,17z" target="_blank" rel="noopener">
+        <a href="https://www.google.com/search?q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka" target="_blank" rel="noopener">
           <span class="icon">🅖</span><span>Google Reviews</span>
         </a>
         <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">
@@ -337,58 +332,60 @@
         </a>
       </div>
       <div class="reviews-slider">
-        <div class="review-slide active">
-          <div class="review-meta">
-            <span>★ 5 / 5</span>
-            <span>Emily, UK</span>
+        <div class="reviews-track">
+          <div class="review-slide">
+            <div class="review-meta">
+              <span>★ 5 / 5</span>
+              <span>Emily, UK</span>
+            </div>
+            <div class="review-text">
+              “The Jungle Loft was the best accommodation we had in Sri Lanka. The space is beautifully designed by Indika himself, with great attention to detail and a genuine sense of care in every corner. The location strikes a perfect balance: just a short tuk tuk ride from Galle Fort, yet peacefully tucked away in nature. Highly recommended!”
+            </div>
           </div>
-          <div class="review-text">
-            “The Jungle Loft was the best accommodation we had in Sri Lanka. The space is beautifully designed by Indika himself, with great attention to detail and a genuine sense of care in every corner. The location strikes a perfect balance: just a short tuk tuk ride from Galle Fort, yet peacefully tucked away in nature. Highly recommended!”
+          <div class="review-slide">
+            <div class="review-meta">
+              <span>★ 5 / 5 – Airbnb</span>
+              <span>Justin, Germany</span>
+            </div>
+            <div class="review-text">
+              “4 wonderful houses and a nice pool directly in the jungle! This place is so stunning. We came here to have some relaxing days outside of the city (it’s very near to Galle). The team is very nice and the house is super clean. If you do a massage here ask for Harsha &amp; Gayani.”
+            </div>
           </div>
-        </div>
-        <div class="review-slide">
-          <div class="review-meta">
-            <span>★ 5 / 5 – Airbnb</span>
-            <span>Justin, Germany</span>
+          <div class="review-slide">
+            <div class="review-meta">
+              <span>★ 5 / 5 – Airbnb</span>
+              <span>Kim, Germany</span>
+            </div>
+            <div class="review-text">
+              “Das Jungle Loft ist eine der schönsten und eindrucksvollsten Unterkünfte, in denen wir je übernachtet haben. Von hier aus genießt man einen atemberaubenden Blick auf den Dschungel und hat die Möglichkeit, zahlreiche Tiere zu beobachten. Selbst wenn das Frühstück nicht inbegriffen wäre, wäre die Unterkunft jeden Cent wert.”
+            </div>
           </div>
-          <div class="review-text">
-            “4 wonderful houses and a nice pool directly in the jungle! This place is so stunning. We came here to have some relaxing days outside of the city (it’s very near to Galle). The team is very nice and the house is super clean. If you do a massage here ask for Harsha &amp; Gayani.”
+          <div class="review-slide">
+            <div class="review-meta">
+              <span>★ 5 / 5 – Google</span>
+              <span>Déborah, France</span>
+            </div>
+            <div class="review-text">
+              “We spent two nights as a family at The Jungle Loft in Galle – it was wonderful, a thousand thanks to the whole team. The room is incredible and the meals are delicious. Peacefully located in nature, yet only minutes from the beaches and Galle. I wholeheartedly recommend this place – thank you, The Jungle Loft!”
+            </div>
           </div>
-        </div>
-        <div class="review-slide">
-          <div class="review-meta">
-            <span>★ 5 / 5 – Airbnb</span>
-            <span>Kim, Germany</span>
+          <div class="review-slide">
+            <div class="review-meta">
+              <span>★ 5 / 5 – Google</span>
+              <span>Laura, France</span>
+            </div>
+            <div class="review-text">
+              “A magical place in the heart of the jungle. The hospitality was outstanding – the team was incredibly kind, always helpful, and had a solution for everything. A real highlight was the food: every evening, dinner was freshly prepared just for me and it was a true delight each time.”
+            </div>
           </div>
-          <div class="review-text">
-            “Das Jungle Loft ist eine der schönsten und eindrucksvollsten Unterkünfte, in denen wir je übernachtet haben. Von hier aus genießt man einen atemberaubenden Blick auf den Dschungel und hat die Möglichkeit, zahlreiche Tiere zu beobachten. Selbst wenn das Frühstück nicht inbegriffen wäre, wäre die Unterkunft jeden Cent wert.”
-          </div>
-        </div>
-        <div class="review-slide">
-          <div class="review-meta">
-            <span>★ 5 / 5 – Google</span>
-            <span>Déborah, France</span>
-          </div>
-          <div class="review-text">
-            “We spent two nights as a family at The Jungle Loft in Galle – it was wonderful, a thousand thanks to the whole team. The room is incredible and the meals are delicious. Peacefully located in nature, yet only minutes from the beaches and Galle. I wholeheartedly recommend this place – thank you, The Jungle Loft!”
-          </div>
-        </div>
-        <div class="review-slide">
-          <div class="review-meta">
-            <span>★ 5 / 5 – Google</span>
-            <span>Laura, France</span>
-          </div>
-          <div class="review-text">
-            “A magical place in the heart of the jungle. The hospitality was outstanding – the team was incredibly kind, always helpful, and had a solution for everything. A real highlight was the food: every evening, dinner was freshly prepared just for me and it was a true delight each time.”
-          </div>
-        </div>
-        <div class="review-slide">
-          <div class="review-meta">
-            <span>★ 5 / 5 – Airbnb</span>
-            <span>Liv, UK</span>
-          </div>
-          <div class="review-text">
-            “We loved our stay at Jungle Loft. Immersed in nature and so peaceful &amp; relaxing. There are only four rooms and each has been designed so you have complete privacy. The enormous bath, outdoor shower and hanging chair were particular highlights. A huge thank you to Indika and the team.”
+          <div class="review-slide">
+            <div class="review-meta">
+              <span>★ 5 / 5 – Airbnb</span>
+              <span>Liv, UK</span>
+            </div>
+            <div class="review-text">
+              “We loved our stay at Jungle Loft. Immersed in nature and so peaceful &amp; relaxing. There are only four rooms and each has been designed so you have complete privacy. The enormous bath, outdoor shower and hanging chair were particular highlights. A huge thank you to Indika and the team.”
+            </div>
           </div>
         </div>
 
@@ -421,11 +418,11 @@
       <div class="card reveal">
         <img src="assets/place.jpg" alt="Open veranda with antique chest and garden view" />
         <div class="content">
-          <h3>Design & Soul</h3>
+          <h3>Design &amp; Soul</h3>
           <p>We like beautiful simplicity: tactile fabrics, reclaimed details, quiet color. Things are made to last and to feel good — not to shout.</p>
           <ul>
-            <li>Air-conditioning & fast Wi-Fi</li>
-            <li>Rain showers & quality linens</li>
+            <li>Air-conditioning &amp; fast Wi-Fi</li>
+            <li>Rain showers &amp; quality linens</li>
             <li>Private patios or terraces</li>
           </ul>
         </div>
@@ -436,7 +433,7 @@
   <!-- ROOMS -->
   <section id="rooms">
     <div class="container">
-      <h2 class="section-title reveal">Suites & Bungalows</h2>
+      <h2 class="section-title reveal">Suites &amp; Bungalows</h2>
       <p class="section-sub reveal">Four individual spaces around the pool. Quiet, natural materials and plenty of greenery — made for unhurried days.</p>
       <div class="grid grid-4">
         <article class="card reveal">
@@ -563,6 +560,11 @@
           <li>Airport transfers &amp; local rides</li>
           <li>Whale watching, cycling, vintage city tours</li>
         </ul>
+        <div class="experiences-actions">
+          <a class="btn btn-ghost" href="https://wa.me/94771346185?text=Hi%20Jungle%20Loft!%20I%E2%80%99d%20like%20to%20ask%20about%20experiences%20and%20tours." target="_blank" rel="noopener">
+            Contact us via WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -590,7 +592,7 @@
   <!-- LOCATION / MAP -->
   <section id="location" aria-label="Location & directions">
     <div class="container">
-      <h2 class="section-title reveal">Location & Getting here</h2>
+      <h2 class="section-title reveal">Location &amp; Getting here</h2>
       <p class="section-sub reveal">Wanchawala, Galle — on the edge of jungle and rice fields; beaches and the historic Galle Fort are a short ride away.</p>
       <div id="map" aria-label="Map" class="reveal"></div>
     </div>
@@ -599,7 +601,7 @@
   <!-- CONTACT / BOOKING REQUEST -->
   <section id="contact" aria-label="Contact">
     <div class="container">
-      <h2 class="section-title reveal">Contact & Enquiry</h2>
+      <h2 class="section-title reveal">Contact &amp; Enquiry</h2>
       <p class="section-sub reveal">Questions or a private offer? Send us a message — we reply quickly.</p>
       <form id="contactForm" action="https://formspree.io/f/mjkpnkkl" method="POST" class="reveal">
         <input type="hidden" name="_subject" value="New enquiry via The Jungle Loft website" />
@@ -765,7 +767,7 @@
         <div class="footer-follow">
           Follow us:
           <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">TripAdvisor</a>
-          <a href="https://www.google.com/maps/place/The+Jungle+Loft+-+Galle/@6.0355871,80.2582226,17z" target="_blank" rel="noopener">Google Reviews</a>
+          <a href="https://www.google.com/search?q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka" target="_blank" rel="noopener">Google Reviews</a>
           <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">Instagram (@thejungleloft_galle)</a>
         </div>
       </div>
@@ -970,18 +972,21 @@
       tabs.forEach(t=> t.addEventListener('click', ()=> activate(t.dataset.target)));
     })();
 
-    // Reviews slider logic
+    // Reviews slider logic – horizontal "swipe" + auto every 6s
     (function(){
-      const slides = document.querySelectorAll('.review-slide');
-      const dots = document.querySelectorAll('.review-dot');
+      const slider = document.querySelector('.reviews-slider');
+      const track = slider?.querySelector('.reviews-track');
+      const slides = slider ? slider.querySelectorAll('.review-slide') : [];
+      const dots = slider ? slider.querySelectorAll('.review-dot') : [];
       const prev = document.getElementById('reviewPrev');
       const next = document.getElementById('reviewNext');
-      if (!slides.length) return;
+      if (!slides.length || !track) return;
+
       let index = 0;
 
       function showReview(i){
         index = (i + slides.length) % slides.length;
-        slides.forEach((s,idx)=> s.classList.toggle('active', idx===index));
+        track.style.transform = 'translateX(' + (-index * 100) + '%)';
         dots.forEach((d,idx)=> d.classList.toggle('active', idx===index));
       }
 
@@ -991,12 +996,11 @@
 
       showReview(0);
 
-      let timer = setInterval(()=> showReview(index+1), 9000);
-      const slider = document.querySelector('.reviews-slider');
-      slider?.addEventListener('mouseenter', ()=> { clearInterval(timer); });
-      slider?.addEventListener('mouseleave', ()=> {
+      let timer = setInterval(()=> showReview(index+1), 6000);
+      slider.addEventListener('mouseenter', ()=> { clearInterval(timer); });
+      slider.addEventListener('mouseleave', ()=> {
         clearInterval(timer);
-        timer = setInterval(()=> showReview(index+1), 9000);
+        timer = setInterval(()=> showReview(index+1), 6000);
       });
     })();
   </script>
