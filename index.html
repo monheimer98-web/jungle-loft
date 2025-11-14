@@ -839,24 +839,34 @@
   </section>
 
   <!-- AVAILABILITY under Direct booking -->
-  <section id="availability" class="section container">
-    <h2 class="section-title">Availability</h2>
-    <p class="section-sub">Check live availability for each room. Connect your Google Calendar embeds below.</p>
-    <div class="cal-tabs" role="tablist" aria-label="Room calendars">
-      <button class="cal-tab active" data-target="peacock" role="tab" aria-selected="true">Peacock Villa</button>
-      <button class="cal-tab" data-target="monkey" role="tab" aria-selected="false">Monkey Villa</button>
-      <button class="cal-tab" data-target="mango" role="tab" aria-selected="false">Tropical Mango</button>
-      <button class="cal-tab" data-target="lotus" role="tab" aria-selected="false">Golden Lotus</button>
-    </div>
-    <div class="cal-frames">
-      <!-- Replace each src with your Google Calendar embed URL for that room -->
-      <iframe class="cal-frame active" id="cal-peacock" title="Peacock Villa calendar" src="REPLACE_CAL_PEACOCK" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
-      <iframe class="cal-frame" id="cal-monkey" title="Monkey Villa calendar" src="REPLACE_CAL_MONKEY" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
-      <iframe class="cal-frame" id="cal-mango" title="Tropical Mango calendar" src="REPLACE_CAL_MANGO" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
-      <iframe class="cal-frame" id="cal-lotus" title="Golden Lotus calendar" src="REPLACE_CAL_LOTUS" style="width:100%;min-height:700px;border:0" scrolling="no"></iframe>
-    </div>
-    <p class="muted">Each calendar can be synced from Airbnb/Booking via iCal → Google Calendar. Click a tab to switch rooms.</p>
-  </section>
+<section id="availability" class="section container">
+  <h2 class="section-title">Availability &amp; Booking</h2>
+  <p class="section-sub">
+    Check live availability and book securely via our booking engine powered by Little Hotelier.
+  </p>
+
+  <!-- Booking engine eingebettet -->
+  <div class="booking-engine" style="margin-top: 16px;">
+    <iframe
+      src="https://book-directonline.com/properties/thejungleloftgalle"
+      title="Online booking – The Jungle Loft"
+      style="width:100%;min-height:750px;border:0;border-radius:20px;overflow:hidden;background:#ffffff;"
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <p class="muted" style="margin-top:12px;">
+    If the booking form does not load properly, please
+    <a
+      href="https://book-directonline.com/properties/thejungleloftgalle"
+      target="_blank"
+      rel="noopener"
+    >
+      open the booking page here
+    </a>.
+  </p>
+</section>
+
 
   <!-- FAQ -->
   <section id="faq" aria-label="FAQ">
