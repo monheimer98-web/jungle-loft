@@ -78,55 +78,157 @@
     .hero-ctrls { position:absolute; right:16px; bottom:16px; display:flex; gap:8px; }
     .hero-ctrls button { backdrop-filter: blur(6px); background: rgba(255,255,255,.9); border:1px solid #e4e1d8; border-radius: 999px; padding:8px 10px; font-weight:700; cursor:pointer; }
 
-   /* Reviews under hero – clean band under hero, wider */
+  /* Reviews – breites Band direkt unter dem Hero */
 .reviews {
-  padding: 40px 0 80px; /* sitzt jetzt sauber unter dem Hero */
-  margin-top: 0;
-  background: linear-gradient(180deg, rgba(13,26,18,.04) 0%, rgba(13,26,18,.14) 100%);
+  margin-top: 40px; /* klarer Abstand unter dem Hero */
+  padding: 32px 0 56px;
+  background: linear-gradient(90deg, #0b1a12, #16271d); /* dunkles Band über die ganze Breite */
 }
 
 .reviews > .container {
-  background:#0d1a12;
-  border-radius: 32px;
-  padding:28px 40px 30px;
-  box-shadow: var(--shadow);
-  border:1px solid rgba(255,255,255,.05);
-  color:#e7efe9;
-  position:relative;
-  overflow:hidden;
-
-  /* wirkt breiter als die normalen Sections */
-  width: calc(100% - 40px);   /* nur 20px Abstand links/rechts */
-  max-width: 1320px;          /* darf größer sein als dein normales container-Limit */
+  /* Kein eigenes „Kärtchen“ mehr, nur noch Layout */
+  background: transparent;
+  border-radius: 0;
+  padding: 0 24px;
+  box-shadow: none;
+  border: 0;
+  color: #e7efe9;
+  position: relative;
+  max-width: 1320px;    /* etwas breiter als normale Sections */
   margin: 0 auto;
 }
-    
-    .reviews > .container::before {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(circle at top left, rgba(201,176,138,.28), transparent 55%);
-      pointer-events:none;
-    }
-    .reviews > .container > * { position:relative; z-index:1; }
-    .reviews .score { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:14px; }
-    .reviews .stars { font-size:24px; letter-spacing:2px; }
-    .reviews .score-text { font-size:13px; opacity:.9; }
-    .review-links { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; margin-bottom:12px; }
-    .review-links a { display:inline-flex; align-items:center; gap:6px; padding:7px 12px; border-radius:999px; border:1px solid rgba(231,239,233,.26); color:#e7efe9; background:rgba(8,18,12,.85); }
-    .review-links span.icon { font-size:16px; }
 
-    .reviews-slider { position:relative; margin-top:20px; overflow:hidden; min-height:170px; }
-    .reviews-track { display:flex; transition: transform .6s cubic-bezier(.25,.8,.25,1); will-change: transform; }
-    .review-slide { flex:0 0 100%; padding-right:4px; }
-    .review-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:13px; opacity:.9; margin-bottom:6px; }
-    .review-text { font-size:16px; line-height:1.7; }
+.reviews > .container::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left, rgba(201,176,138,.28), transparent 55%);
+  pointer-events:none;
+}
 
-    .review-nav { margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .review-buttons { display:flex; gap:8px; }
-    .review-btn { background:rgba(8,18,12,.9); border:1px solid rgba(231,239,233,.5); border-radius:999px; padding:6px 14px; color:#e7efe9; cursor:pointer; font-size:13px; }
-    .review-btn:hover { background:rgba(231,239,233,.06); }
-    .review-dots { display:flex; gap:6px; }
-    .review-dot { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.32); border:none; padding:0; cursor:pointer; }
-    .review-dot.active { background:#fff; }
+.reviews > .container > * {
+  position:relative;
+  z-index:1;
+}
+
+.reviews .score {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:14px;
+  margin-bottom:14px;
+}
+
+.reviews .stars {
+  font-size:24px;
+  letter-spacing:2px;
+}
+
+.reviews .score-text {
+  font-size:13px;
+  opacity:.9;
+}
+
+.review-links {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.review-links a {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid rgba(231,239,233,.26);
+  color:#e7efe9;
+  background:rgba(8,18,12,.85);
+}
+
+.review-links span.icon {
+  font-size:16px;
+}
+
+.reviews-slider {
+  position:relative;
+  margin-top:20px;
+  overflow:hidden;
+  min-height:170px;
+}
+
+.reviews-track {
+  display:flex;
+  transition: transform .6s cubic-bezier(.25,.8,.25,1);
+  will-change: transform;
+}
+
+.review-slide {
+  flex:0 0 100%;
+  padding-right:4px;
+}
+
+.review-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  font-size:13px;
+  opacity:.9;
+  margin-bottom:6px;
+}
+
+.review-text {
+  font-size:16px;
+  line-height:1.7;
+}
+
+.review-nav {
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.review-buttons {
+  display:flex;
+  gap:8px;
+}
+
+.review-btn {
+  background:rgba(8,18,12,.9);
+  border:1px solid rgba(231,239,233,.5);
+  border-radius:999px;
+  padding:6px 14px;
+  color:#e7efe9;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.review-btn:hover {
+  background:rgba(231,239,233,.06);
+}
+
+.review-dots {
+  display:flex;
+  gap:6px;
+}
+
+.review-dot {
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.32);
+  border:none;
+  padding:0;
+  cursor:pointer;
+}
+
+.review-dot.active {
+  background:#fff;
+}
 
     /* Reveal on scroll */
     .reveal { opacity: 0; transform: translateY(16px); filter: blur(2px); transition: all .7s cubic-bezier(.2,.7,.2,1); }
