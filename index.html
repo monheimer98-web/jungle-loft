@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10,6 +10,16 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.your-domain.com" />
   <meta property="og:image" content="/assets/og-image.jpg" />
+
+  <!-- GA4: replace G-XXXXXXXXXX with your real Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
@@ -66,6 +76,26 @@
     .hero-ctrls { position:absolute; right:16px; bottom:16px; display:flex; gap:8px; }
     .hero-ctrls button { backdrop-filter: blur(6px); background: rgba(255,255,255,.9); border:1px solid #e4e1d8; border-radius: 999px; padding:8px 10px; font-weight:700; cursor:pointer; }
 
+    /* Reviews under hero */
+    .reviews { background:#0d1a12; color:#e7efe9; padding:36px 0 44px; }
+    .reviews .score { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:14px; }
+    .reviews .stars { font-size:22px; letter-spacing:2px; }
+    .reviews .score-text { font-size:13px; opacity:.9; }
+    .review-links { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; margin-bottom:10px; }
+    .review-links a { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid rgba(231,239,233,.3); color:#e7efe9; }
+    .review-links span.icon { font-size:16px; }
+    .reviews-slider { position:relative; margin-top:10px; }
+    .review-slide { display:none; }
+    .review-slide.active { display:block; }
+    .review-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:13px; opacity:.9; margin-bottom:4px; }
+    .review-text { font-size:15px; line-height:1.6; }
+    .review-nav { margin-top:14px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .review-buttons { display:flex; gap:8px; }
+    .review-btn { background:transparent; border:1px solid rgba(231,239,233,.6); border-radius:999px; padding:5px 12px; color:#e7efe9; cursor:pointer; font-size:13px; }
+    .review-dots { display:flex; gap:6px; }
+    .review-dot { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.3); border:none; padding:0; cursor:pointer; }
+    .review-dot.active { background:#fff; }
+
     /* Reveal on scroll */
     .reveal { opacity: 0; transform: translateY(16px); filter: blur(2px); transition: all .7s cubic-bezier(.2,.7,.2,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
@@ -95,6 +125,15 @@
     .gallery a { position:relative; }
     .gallery img { width:100%; height:220px; object-fit:cover; border-radius: 16px; display:block; }
 
+    /* Dining */
+    .dining-highlights { margin: 16px 0 6px; }
+    .dining-highlights ul { margin:0; padding-left:18px; color:var(--muted); }
+    .dining-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+
+    /* Experiences */
+    .experiences-list { margin:0; padding-left:18px; color:var(--muted); }
+    .experiences-list li { margin:4px 0; }
+
     /* Lightbox */
     .lightbox { position: fixed; inset: 0; background: rgba(7,20,14,.8); display:none; align-items:center; justify-content:center; z-index: 80; padding: 24px; }
     .lightbox img { max-width: min(100%, 1100px); max-height: 85vh; border-radius: 16px; box-shadow: 0 40px 100px rgba(0,0,0,.35); }
@@ -112,10 +151,38 @@
     /* Footer */
     footer { background: #0d1a12; color: #d6e2da; padding: 46px 0 96px; position:relative; }
     footer a { color: #e7efe9; }
+    .footer-main { display:grid; gap:12px; }
+    @media (min-width: 720px){
+      .footer-main { grid-template-columns: 2fr 1.3fr; align-items:flex-start; }
+    }
+    .footer-contact strong { display:block; margin-bottom:4px; }
+    .footer-follow { margin-top:8px; font-size:14px; }
+    .footer-follow a { margin-right:10px; }
+    .footer-bottom { font-size:13px; opacity:.85; margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; }
 
     /* Sticky booking bar */
     .sticky-book { position: fixed; left: 12px; right: 12px; bottom: 16px; z-index: 85; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border:1px solid #e4e1d8; border-radius: 999px; box-shadow: 0 14px 44px rgba(10,26,20,.18); display:flex; align-items:center; justify-content:center; gap:12px; padding: 10px; }
     .sticky-book span { font-weight:700; }
+
+    /* Floating WhatsApp button */
+    .whatsapp-float {
+      position:fixed;
+      bottom:90px;
+      right:16px;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      background:#25D366;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      z-index:95;
+      color:#fff;
+      font-weight:700;
+    }
+    .whatsapp-float span { font-size:26px; line-height:1; }
+    .whatsapp-float:hover { filter:brightness(1.05); }
 
     /* Modal (Popup) */
     .modal-backdrop { position: fixed; inset: 0; background: rgba(5,20,10,.65); display:none; align-items:center; justify-content:center; z-index: 90; padding: 20px; }
@@ -149,7 +216,10 @@
       <nav aria-label="Main navigation">
         <ul>
           <li><a href="#place">About</a></li>
-          <li><a href="#rooms">Rooms</a></li><li><a href="#gallery">Gallery</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#dining">Dining</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#location">Location</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a class="btn btn-ghost" href="#book">Book now</a></li>
@@ -177,7 +247,7 @@
       <div class="hero-content container">
         <div>
           <h1>A luxury jungle hideaway in Galle.</h1>
-          <p>Four intimate stays — two private villas and two bungalows — gathered around a serene pool. Minutes to beaches and the UNESCO‑listed Galle Fort.</p>
+          <p>Four intimate stays — two private villas and two bungalows — gathered around a serene pool. Minutes to beaches and the UNESCO-listed Galle Fort.</p>
           <div class="chips" aria-label="Highlights">
             <div class="chip">Jungle pool</div>
             <div class="chip">Breakfast on request</div>
@@ -197,13 +267,108 @@
     </div>
   </section>
 
+  <!-- GUEST REVIEWS / TESTIMONIALS -->
+  <section id="reviews" class="reviews" aria-label="Guest reviews">
+    <div class="container">
+      <div class="score">
+        <div class="stars">★★★★★</div>
+        <div>
+          <div style="font-weight:700;">5.0 / 5.0 – Guest rating</div>
+          <div class="score-text">Based on reviews from Airbnb, Google & TripAdvisor</div>
+        </div>
+      </div>
+      <div class="review-links">
+        <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">
+          <span class="icon">🅣</span><span>TripAdvisor</span>
+        </a>
+        <a href="https://www.google.com/maps/place/The+Jungle+Loft+-+Galle/@6.0355871,80.2582226,17z" target="_blank" rel="noopener">
+          <span class="icon">🅖</span><span>Google Reviews</span>
+        </a>
+        <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">
+          <span class="icon">📸</span><span>Instagram</span>
+        </a>
+      </div>
+      <div class="reviews-slider">
+        <div class="review-slide active">
+          <div class="review-meta">
+            <span>★ 5 / 5</span>
+            <span>Emily, UK</span>
+          </div>
+          <div class="review-text">
+            “The Jungle Loft was the best accommodation we had in Sri Lanka. The space is beautifully designed by Indika himself, with great attention to detail and a genuine sense of care in every corner. The location strikes a perfect balance: just a short tuk tuk ride from Galle Fort, yet peacefully tucked away in nature. Highly recommended!”
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-meta">
+            <span>★ 5 / 5 – Airbnb</span>
+            <span>Justin, Germany</span>
+          </div>
+          <div class="review-text">
+            “4 wonderful houses and a nice pool directly in the jungle! This place is so stunning. We came here to have some relaxing days outside of the city (it’s very near to Galle). The team is very nice and the house is super clean. If you do a massage here ask for Harsha &amp; Gayani.”
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-meta">
+            <span>★ 5 / 5 – Airbnb</span>
+            <span>Kim, Germany</span>
+          </div>
+          <div class="review-text">
+            “Das Jungle Loft ist eine der schönsten und eindrucksvollsten Unterkünfte, in denen wir je übernachtet haben. Von hier aus genießt man einen atemberaubenden Blick auf den Dschungel und hat die Möglichkeit, zahlreiche Tiere zu beobachten. Selbst wenn das Frühstück nicht inbegriffen wäre, wäre die Unterkunft jeden Cent wert.”
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-meta">
+            <span>★ 5 / 5 – Google</span>
+            <span>Déborah, France</span>
+          </div>
+          <div class="review-text">
+            “We spent two nights as a family at The Jungle Loft in Galle – it was wonderful, a thousand thanks to the whole team. The room is incredible and the meals are delicious. Peacefully located in nature, yet only minutes from the beaches and Galle. I wholeheartedly recommend this place – thank you, The Jungle Loft!”
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-meta">
+            <span>★ 5 / 5 – Google</span>
+            <span>Laura, France</span>
+          </div>
+          <div class="review-text">
+            “A magical place in the heart of the jungle. The hospitality was outstanding – the team was incredibly kind, always helpful, and had a solution for everything. A real highlight was the food: every evening, dinner was freshly prepared just for me and it was a true delight each time.”
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-meta">
+            <span>★ 5 / 5 – Airbnb</span>
+            <span>Liv, UK</span>
+          </div>
+          <div class="review-text">
+            “We loved our stay at Jungle Loft. Immersed in nature and so peaceful &amp; relaxing. There are only four rooms and each has been designed so you have complete privacy. The enormous bath, outdoor shower and hanging chair were particular highlights. A huge thank you to Indika and the team.”
+          </div>
+        </div>
+
+        <div class="review-nav">
+          <div class="review-buttons">
+            <button type="button" class="review-btn" id="reviewPrev">‹ Previous</button>
+            <button type="button" class="review-btn" id="reviewNext">Next ›</button>
+          </div>
+          <div class="review-dots">
+            <button class="review-dot active" data-index="0" aria-label="Show review 1"></button>
+            <button class="review-dot" data-index="1" aria-label="Show review 2"></button>
+            <button class="review-dot" data-index="2" aria-label="Show review 3"></button>
+            <button class="review-dot" data-index="3" aria-label="Show review 4"></button>
+            <button class="review-dot" data-index="4" aria-label="Show review 5"></button>
+            <button class="review-dot" data-index="5" aria-label="Show review 6"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT / THE PLACE -->
   <section id="place">
     <div class="container two-col">
       <div class="reveal">
         <h2 class="section-title">A small sanctuary of green</h2>
         <p class="section-sub">On the edge of the jungle in Wanchawala, The Jungle Loft feels calm and close to nature — with palms, frangipani and birdsong around a quiet pool. From here, beaches and Galle Fort are just a short ride away.</p>
-        <p>Our four stays — <em>Peacock Villa</em>, <em>Monkey Villa</em>, <em>Tropical Mango Bungalow</em> and <em>Golden Lotus Bungalow</em> — are crafted in a warm, natural palette with hand‑picked antiques, local wood and soft linens. Morning light filters through the leaves, evenings are for tea on the terrace.</p>
+        <p>Our four stays — <em>Peacock Villa</em>, <em>Monkey Villa</em>, <em>Tropical Mango Bungalow</em> and <em>Golden Lotus Bungalow</em> — are crafted in a warm, natural palette with hand-picked antiques, local wood and soft linens. Morning light filters through the leaves, evenings are for tea on the terrace.</p>
       </div>
       <div class="card reveal">
         <img src="assets/place.jpg" alt="Open veranda with antique chest and garden view" />
@@ -211,7 +376,7 @@
           <h3>Design & Soul</h3>
           <p>We like beautiful simplicity: tactile fabrics, reclaimed details, quiet color. Things are made to last and to feel good — not to shout.</p>
           <ul>
-            <li>Air‑conditioning & fast Wi‑Fi</li>
+            <li>Air-conditioning & fast Wi-Fi</li>
             <li>Rain showers & quality linens</li>
             <li>Private patios or terraces</li>
           </ul>
@@ -230,11 +395,11 @@
           <img src="assets/rooms/peacock/cover.jpg" alt="Peacock Villa – bright bedroom with greenery views">
           <div class="content">
             <h3>Peacock Villa</h3>
-            <p>Private villa with a generous terrace facing the treetops; open‑air rain shower and soaking tub. A slow‑living space for longer stays.</p>
+            <p>Private villa with a generous terrace facing the treetops; open-air rain shower and soaking tub. A slow-living space for longer stays.</p>
             <ul>
-              <li>King bed • Open‑air bath</li>
+              <li>King bed • Open-air bath</li>
               <li>Terrace with canopy views</li>
-              <li>Air‑conditioning • Wi‑Fi</li>
+              <li>Air-conditioning • Wi-Fi</li>
             </ul>
             <div class="room-actions">
               <a href="#" class="btn btn-ghost" data-room="peacock">View photos</a>
@@ -242,14 +407,14 @@
           </div>
         </article>
         <article class="card reveal">
-          <img src="assets/rooms/monkey/cover.jpg" alt="Monkey Villa – garden views with semi‑open bathroom">
+          <img src="assets/rooms/monkey/cover.jpg" alt="Monkey Villa – garden views with semi-open bathroom">
           <div class="content">
             <h3>Monkey Villa</h3>
-            <p>Airy villa with a semi‑open bathroom and garden views. Morning coffee on the terrace, birds in the trees.</p>
+            <p>Airy villa with a semi-open bathroom and garden views. Morning coffee on the terrace, birds in the trees.</p>
             <ul>
-              <li>King bed • Semi‑open bathroom</li>
+              <li>King bed • Semi-open bathroom</li>
               <li>Private terrace to the garden</li>
-              <li>Air‑conditioning • Wi‑Fi</li>
+              <li>Air-conditioning • Wi-Fi</li>
             </ul>
             <div class="room-actions">
               <a href="#" class="btn btn-ghost" data-room="monkey">View photos</a>
@@ -264,7 +429,7 @@
             <ul>
               <li>Queen bed • Rain shower</li>
               <li>Private patio</li>
-              <li>Air‑conditioning • Wi‑Fi</li>
+              <li>Air-conditioning • Wi-Fi</li>
             </ul>
             <div class="room-actions">
               <a href="#" class="btn btn-ghost" data-room="mango">View photos</a>
@@ -279,7 +444,7 @@
             <ul>
               <li>Queen bed • Rain shower</li>
               <li>Patio tucked into green</li>
-              <li>Air‑conditioning • Wi‑Fi</li>
+              <li>Air-conditioning • Wi-Fi</li>
             </ul>
             <div class="room-actions">
               <a href="#" class="btn btn-ghost" data-room="lotus">View photos</a>
@@ -290,7 +455,69 @@
     </div>
   </section>
 
-  <!-- GALLERY with lightbox (add your images in assets/gallery/) -->
+  <!-- DINING -->
+  <section id="dining" aria-label="Rice & Spice dining">
+    <div class="container two-col">
+      <div class="reveal">
+        <h2 class="section-title">Rice &amp; Spice – Dining in Nature</h2>
+        <p class="section-sub">Dinner by reservation only. Please order by 3 PM for same-day dining.</p>
+        <p>Hidden in the heart of the jungle, Rice &amp; Spice offers a private dining experience inspired by traditional Sri Lankan flavors. Each dish is freshly prepared with local ingredients and served in a peaceful setting — on your private terrace or in our open jungle restaurant.</p>
+        <div class="dining-highlights">
+          <ul>
+            <li>Freshly cooked every evening</li>
+            <li>Candle-lit private dining</li>
+            <li>Signature dishes like Rice &amp; Curry or Catch of the Day</li>
+            <li>Cooking class available</li>
+          </ul>
+        </div>
+        <div class="dining-actions">
+          <a class="btn btn-primary" href="assets/rice-and-spice-menu.pdf" target="_blank" rel="noopener">View Menu (PDF)</a>
+          <a class="btn btn-ghost" href="https://wa.me/94771346185?text=Hi%20Jungle%20Loft!%20I%E2%80%99d%20like%20to%20reserve%20a%20dinner%20at%20Rice%20%26%20Spice%20for%20tonight." target="_blank" rel="noopener">
+            Reserve via WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="card reveal">
+        <img src="assets/dining.jpg" alt="Candle-lit dinner at Rice &amp; Spice">
+        <div class="content">
+          <h3>Our Special: Food Tasting Program</h3>
+          <p>Join us for an unforgettable evening where food becomes an experience. Our Sri Lankan Food Tasting takes you on a journey through the island’s most beloved flavors — from spicy street snacks and aromatic curries to sweet local desserts.</p>
+          <ul>
+            <li>5-course tasting menu featuring Sri Lankan classics</li>
+            <li>Local ingredients &amp; family recipes</li>
+            <li>Includes an intro to spices &amp; traditions</li>
+            <li>Guided by our chef, who personally introduces each dish and its story</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCES -->
+  <section id="experiences" aria-label="Experiences">
+    <div class="container two-col">
+      <div class="reveal">
+        <h2 class="section-title">Experiences – More than a stay</h2>
+        <p class="section-sub">Make your time in the jungle extra special. From in-room massages and private dinners to cooking classes, transfers and day trips — we’ll arrange everything for you.</p>
+        <ul class="experiences-list">
+          <li>In-room or terrace massage</li>
+          <li>Private dining at Rice &amp; Spice</li>
+          <li>Cooking class with our chef</li>
+          <li>Airport transfers &amp; local rides</li>
+          <li>Whale watching, cycling, vintage city tours</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <img src="assets/experiences/massage.jpg" alt="In-room massage experience at The Jungle Loft">
+        <div class="content">
+          <h3>Relax, explore, repeat</h3>
+          <p>Tell us what you’d love to experience — from a sunset tuk tuk ride to a full Sri Lankan spa ritual — and we’ll take care of the rest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY with lightbox -->
   <section id="gallery" aria-label="Photo gallery">
     <div class="container">
       <h2 class="section-title reveal">Gallery</h2>
@@ -319,7 +546,7 @@
     </div>
   </section>
 
-  <!-- CONTACT / BOOKING REQUEST (Formspree) -->
+  <!-- CONTACT / BOOKING REQUEST -->
   <section id="contact" aria-label="Contact">
     <div class="container">
       <h2 class="section-title reveal">Contact & Enquiry</h2>
@@ -414,37 +641,101 @@
   <section id="faq" aria-label="FAQ">
     <div class="container">
       <h2 class="section-title reveal">Frequently asked questions</h2>
+
       <details class="reveal">
-        <summary>What time is check‑in?</summary>
-        <p>Check‑in is from 2:00 pm. Early check‑in upon availability.</p>
+        <summary>How can I book a massage or dinner?</summary>
+        <p>You can simply send us a WhatsApp message or let us know during your stay — we’ll be happy to arrange it for you. Massages and dinners are available by reservation only.</p>
       </details>
+
       <details class="reveal">
-        <summary>Do you serve breakfast?</summary>
-        <p>Yes. Breakfast is available on request and served in the garden or by the pool.</p>
+        <summary>Is breakfast included?</summary>
+        <p>Yes — breakfast is included in your stay. On request, we also serve lunch or dinner in our Rice &amp; Spice restaurant or in the privacy of your own room. Please let us know in advance so we can prepare everything fresh for you.</p>
       </details>
+
       <details class="reveal">
-        <summary>How do I get to the beaches or Galle Fort?</summary>
-        <p>We can arrange tuktuks or transfers. Beaches and the UNESCO‑listed Galle Fort are about 10 minutes away.</p>
+        <summary>Can you help with airport transfers or local transport?</summary>
+        <p>Absolutely. We can organize reliable, air-conditioned transfers from Colombo Airport or for any local rides (Galle Fort, beaches, day trips, etc.). Just share your arrival or departure time.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>What kind of massages do you offer?</summary>
+        <p>We offer a selection of massages, including:</p>
+        <ul>
+          <li>Full-body massage</li>
+          <li>Aromatherapy massage</li>
+          <li>Deep-tissue massage</li>
+          <li>Head, neck &amp; shoulder massage</li>
+          <li>Foot reflexology</li>
+        </ul>
+        <p>If you’d like to see our full spa menu, just send us a message — we’ll be happy to share it with you. All treatments can be arranged in-room or on your private terrace.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>What activities or excursions can you arrange?</summary>
+        <p>We offer all the classic tours and popular sights around Galle and the southern coast — such as whale watching, jungle cycling, or visits to the historic Galle Fort.</p>
+        <p>We’re also happy to plan completely individual experiences, tailored to your interests — whether it’s nature, culture, or local food. Just tell us what you’d love to discover, and we’ll take care of the rest.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>What payment methods do you accept?</summary>
+        <p>You can pay in cash (LKR, EUR, or USD) or by credit card. Some activities or transfers may require a small deposit in advance.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>Are there animals around the property?</summary>
+        <p>Yes — we’re surrounded by nature, so you might see monkeys, peacocks, monitor lizards, or colorful birds during your stay. Sometimes small geckos may also find their way inside — they’re harmless and actually help keep insects away.</p>
+        <p>We keep all rooms spotlessly clean, but since we’re part of the jungle, a little wildlife may occasionally visit. It’s all part of the authentic Jungle Loft experience.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>What’s the weather like in Galle?</summary>
+        <p>Warm and tropical all year round — usually 26–31°C. From May to September, short tropical rains are common, but they often pass quickly and make the jungle even greener.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>Do you offer laundry service?</summary>
+        <p>Yes, we can arrange laundry or ironing upon request — just let our staff know.</p>
+      </details>
+
+      <details class="reveal">
+        <summary>Can you organize surprises or special setups?</summary>
+        <p>Of course! Whether it’s a birthday, honeymoon, or romantic dinner, we love helping you celebrate. Tell us in advance, and we’ll prepare something special.</p>
       </details>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <div class="container" style="display:grid; gap: 14px;">
-      <div>&copy; <span id="year"></span> The Jungle Loft. <span>All rights reserved.</span></div>
-      <div style="display:flex; gap:16px; flex-wrap:wrap;">
-        <a href="#imprint">Imprint</a>
-        <a href="#privacy">Privacy</a>
+    <div class="container footer-main">
+      <div class="footer-contact">
+        <strong>The Jungle Loft – Galle, Sri Lanka</strong>
+        <div>Phone / WhatsApp: <a href="https://wa.me/94771346185" target="_blank" rel="noopener">+94 77 134 6185</a> &nbsp;|&nbsp; <a href="mailto:jungleloftgalle@gmail.com">jungleloftgalle@gmail.com</a></div>
+        <div>Wattagewatta, Kaduruduwa, Wanchawala, Galle 80000</div>
+        <div>Raw Luxury in Nature 🌿</div>
+        <div class="footer-follow">
+          Follow us:
+          <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">TripAdvisor</a>
+          <a href="https://www.google.com/maps/place/The+Jungle+Loft+-+Galle/@6.0355871,80.2582226,17z" target="_blank" rel="noopener">Google Reviews</a>
+          <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">Instagram (@thejungleloft_galle)</a>
+        </div>
       </div>
-      <div id="imprint" style="font-size:14px; opacity:.9;">
-        <strong>Imprint (placeholder):</strong>
-        <span>The Jungle Loft, Wattagewatta, Kaduruduwa, Wanchawala, 80120 Galle, Sri Lanka · WhatsApp / Phone: +94 77 737 4747 · Email: jungleloftgalle@gmail.com</span>
+      <div>
+        <div id="imprint" style="font-size:14px; opacity:.9; margin-bottom:8px;">
+          <strong>Imprint:</strong>
+          <span>The Jungle Loft, Wattagewatta, Kaduruduwa, Wanchawala, 80120 Galle, Sri Lanka · Phone / WhatsApp: +94 77 134 6185 · Email: jungleloftgalle@gmail.com</span>
+        </div>
+        <div id="privacy" style="font-size:14px; opacity:.9;">
+          <strong>Privacy:</strong>
+          <span>We process your data to handle your enquiry and bookings. Details on retention and your rights are in our full privacy policy.</span>
+        </div>
       </div>
-      <div id="privacy" style="font-size:14px; opacity:.9;">
-        <strong>Privacy (placeholder):</strong>
-        <span>We process your data to handle your enquiry. Details on retention and rights are in our full privacy policy.</span>
-      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; <span id="year"></span> The Jungle Loft</span>
+      <span>|</span>
+      <a href="#privacy">Privacy Policy</a>
+      <span>|</span>
+      <a href="#imprint">Imprint</a>
     </div>
   </footer>
 
@@ -453,6 +744,11 @@
     <span>Official site — best rate</span>
     <a class="btn btn-primary" href="#book">Book now</a>
   </div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/94771346185" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" title="Message us on WhatsApp">
+    <span>✆</span>
+  </a>
 
   <!-- Lightbox overlay -->
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image viewer">
@@ -493,7 +789,7 @@
     // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Leaflet map (precise coords)
+    // Leaflet map
     const map = L.map('map', { scrollWheelZoom: false });
     const coords = [6.035811150545621, 80.25820113867027];
     map.setView(coords, 13);
@@ -623,6 +919,36 @@
       }
       tabs.forEach(t=> t.addEventListener('click', ()=> activate(t.dataset.target)));
     })();
+
+    // Reviews slider logic
+    (function(){
+      const slides = document.querySelectorAll('.review-slide');
+      const dots = document.querySelectorAll('.review-dot');
+      const prev = document.getElementById('reviewPrev');
+      const next = document.getElementById('reviewNext');
+      if (!slides.length) return;
+      let index = 0;
+
+      function showReview(i){
+        index = (i + slides.length) % slides.length;
+        slides.forEach((s,idx)=> s.classList.toggle('active', idx===index));
+        dots.forEach((d,idx)=> d.classList.toggle('active', idx===index));
+      }
+
+      prev?.addEventListener('click', ()=> showReview(index-1));
+      next?.addEventListener('click', ()=> showReview(index+1));
+      dots.forEach((d,idx)=> d.addEventListener('click', ()=> showReview(idx)));
+
+      showReview(0);
+
+      let timer = setInterval(()=> showReview(index+1), 14000);
+      const slider = document.querySelector('.reviews-slider');
+      slider?.addEventListener('mouseenter', ()=> { clearInterval(timer); });
+      slider?.addEventListener('mouseleave', ()=> {
+        clearInterval(timer);
+        timer = setInterval(()=> showReview(index+1), 14000);
+      });
+    })();
   </script>
 
   <!-- SEO: structured data (Schema.org) -->
@@ -644,7 +970,7 @@
     "url": "https://www.your-domain.com",
     "numberOfRooms": 4,
     "amenityFeature": [
-      { "@type": "LocationFeatureSpecification", "name": "Wi‑Fi", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Breakfast", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Pool", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true }
