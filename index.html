@@ -1122,37 +1122,59 @@ map.on('click', openGoogleMaps);
       tabs.forEach(t=> t.addEventListener('click', ()=> activate(t.dataset.target)));
     })();
 
-    // Reviews slider logic – horizontal "swipe" + auto every 6s
-    (function(){
+       // Reviews slider logic – horizontal "swipe" + auto every 6s
+    (function () {
       const slider = document.querySelector('.reviews-slider');
-      const track = slider?.querySelector('.reviews-track');
+      const track  = slider?.querySelector('.reviews-track');
       const slides = slider ? slider.querySelectorAll('.review-slide') : [];
-      const dots = slider ? slider.querySelectorAll('.review-dot') : [];
-      const prev = document.getElementById('reviewPrev');
-      const next = document.getElementById('reviewNext');
-      if (!slides.length || !track) return;
+      const dots   = slider ? slider.querySelectorAll('.review-dot') : [];
+      const prev   = document.getElementById('reviewPrev');
+      const next   = document.getElementById('reviewNext');
+
+      if (!slider || !track || !slides.length) return;
 
       let index = 0;
+      let timer;
 
-      function showReview(i){
+      function showReview(i) {
         index = (i + slides.length) % slides.length;
         track.style.transform = 'translateX(' + (-index * 100) + '%)';
-        dots.forEach((d,idx)=> d.classList.toggle('active', idx===index));
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === index));
       }
 
-      prev?.addEventListener('click', ()=> showReview(index-1));
-      next?.addEventListener('click', ()=> showReview(index+1));
-      dots.forEach((d,idx)=> d.addEventListener('click', ()=> showReview(idx)));
-
-      showReview(0);
-
-      let timer = setInterval(()=> showReview(index+1), 6000);
-      slider.addEventListener('mouseenter', ()=> { clearInterval(timer); });
-      slider.addEventListener('mouseleave', ()=> {
+      function startTimer() {
         clearInterval(timer);
-        timer = setInterval(()=> showReview(index+1), 6000);
+        timer = setInterval(() => showReview(index + 1), 6000);
+      }
+
+      // Buttons
+      prev?.addEventListener('click', () => {
+        showReview(index - 1);
+        startTimer();
       });
+
+      next?.addEventListener('click', () => {
+        showReview(index + 1);
+        startTimer();
+      });
+
+      // Dots
+      dots.forEach((d, idx) =>
+        d.addEventListener('click', () => {
+          showReview(idx);
+          startTimer();
+        })
+      );
+
+      // Startzustand
+      showReview(0);
+      startTimer();
+
+      // Pause bei Hover
+      slider.addEventListener('mouseenter', () => clearInterval(timer));
+      slider.addEventListener('mouseleave', startTimer);
     })();
+    
   </script>
 
   <!-- SEO: structured data (Schema.org) -->
