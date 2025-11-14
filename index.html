@@ -80,49 +80,43 @@
 
     /* Reviews under hero */
     .reviews {
-      padding: 60px 0 70px;
+      margin-top:-40px; /* leicht in den Hero geschoben */
+      padding: 0 0 80px;
       background: linear-gradient(180deg, rgba(13,26,18,.04) 0%, rgba(13,26,18,.14) 100%);
     }
-    .reviews .container {
+    .reviews > .container {
       background:#0d1a12;
       border-radius: var(--radius-xl);
-      padding:22px 22px 24px;
+      padding:28px 32px 30px;
       box-shadow: var(--shadow);
       border:1px solid rgba(255,255,255,.05);
       color:#e7efe9;
       position:relative;
       overflow:hidden;
+      max-width: 1240px; /* etwas breiter als der Rest */
     }
-    .reviews .container::before {
-      content:'';
-      position:absolute;
-      inset:0;
+    .reviews > .container::before {
+      content:''; position:absolute; inset:0;
       background:radial-gradient(circle at top left, rgba(201,176,138,.28), transparent 55%);
       pointer-events:none;
     }
-    .reviews .container > * {
-      position:relative;
-      z-index:1;
-    }
-    .reviews .score { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:10px; }
-    .reviews .stars { font-size:22px; letter-spacing:2px; }
+    .reviews > .container > * { position:relative; z-index:1; }
+    .reviews .score { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:14px; }
+    .reviews .stars { font-size:24px; letter-spacing:2px; }
     .reviews .score-text { font-size:13px; opacity:.9; }
-    .review-links { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; margin-bottom:8px; }
-    .review-links a { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid rgba(231,239,233,.26); color:#e7efe9; background:rgba(8,18,12,.85); }
+    .review-links { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; margin-bottom:12px; }
+    .review-links a { display:inline-flex; align-items:center; gap:6px; padding:7px 12px; border-radius:999px; border:1px solid rgba(231,239,233,.26); color:#e7efe9; background:rgba(8,18,12,.85); }
     .review-links span.icon { font-size:16px; }
 
-    .reviews-slider { position:relative; margin-top:14px; overflow:hidden; }
+    .reviews-slider { position:relative; margin-top:20px; overflow:hidden; min-height:170px; }
     .reviews-track { display:flex; transition: transform .6s cubic-bezier(.25,.8,.25,1); will-change: transform; }
-    .review-slide {
-      flex:0 0 100%;
-      padding-right:4px;
-    }
-    .review-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:13px; opacity:.9; margin-bottom:4px; }
-    .review-text { font-size:15px; line-height:1.6; }
+    .review-slide { flex:0 0 100%; padding-right:4px; }
+    .review-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:13px; opacity:.9; margin-bottom:6px; }
+    .review-text { font-size:16px; line-height:1.7; }
 
-    .review-nav { margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .review-nav { margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .review-buttons { display:flex; gap:8px; }
-    .review-btn { background:rgba(8,18,12,.9); border:1px solid rgba(231,239,233,.5); border-radius:999px; padding:5px 12px; color:#e7efe9; cursor:pointer; font-size:13px; }
+    .review-btn { background:rgba(8,18,12,.9); border:1px solid rgba(231,239,233,.5); border-radius:999px; padding:6px 14px; color:#e7efe9; cursor:pointer; font-size:13px; }
     .review-btn:hover { background:rgba(231,239,233,.06); }
     .review-dots { display:flex; gap:6px; }
     .review-dot { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.32); border:none; padding:0; cursor:pointer; }
@@ -324,7 +318,7 @@
         <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">
           <span class="icon">🅣</span><span>TripAdvisor</span>
         </a>
-        <a href="https://www.google.com/search?q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka" target="_blank" rel="noopener">
+        <a href="https://www.google.com/search?sca_esv=4fc95be2d6bdf9cb&amp;hl=de-DE&amp;gl=de&amp;sxsrf=AE3TifMX36fW2BHiwuVOCrlmoNtR_6N74A:1763120893729&amp;q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka&amp;si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E714FDjFuTLqevpe9x1azEfTPMoH9cTgJEyZQkjGgCBo2Hqj6zOakVeAkBMNeAyRpLitVdQ%3D&amp;uds=AOm0WdF__6nd2gjWcfyjlqp8kBmtcNDAkhtmji83-ww7K2wyFQnybZemtLU_mC6G5JXQeOvXxdj-uoxMXNtZhD_e1b2Z_qOZjICc-cXQaE3Q-uztfCOhmgJMBgiHmmQ-PTNtvvRw8SqKD35mBCJAhgLD6BqHt_9seh2FgbSx65HSaSW96ej9JkE&amp;sa=X&amp;ved=2ahUKEwiai8SUyfGQAxVPgP0HHbI4AdIQ3PALegQIKRAE&amp;biw=1920&amp;bih=945&amp;dpr=1" target="_blank" rel="noopener">
           <span class="icon">🅖</span><span>Google Reviews</span>
         </a>
         <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">
@@ -767,7 +761,7 @@
         <div class="footer-follow">
           Follow us:
           <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">TripAdvisor</a>
-          <a href="https://www.google.com/search?q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka" target="_blank" rel="noopener">Google Reviews</a>
+          <a href="https://www.google.com/search?sca_esv=4fc95be2d6bdf9cb&amp;hl=de-DE&amp;gl=de&amp;sxsrf=AE3TifMX36fW2BHiwuVOCrlmoNtR_6N74A:1763120893729&amp;q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka&amp;si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E714FDjFuTLqevpe9x1azEfTPMoH9cTgJEyZQkjGgCBo2Hqj6zOakVeAkBMNeAyRpLitVdQ%3D&amp;uds=AOm0WdF__6nd2gjWcfyjlqp8kBmtcNDAkhtmji83-ww7K2wyFQnybZemtLU_mC6G5JXQeOvXxdj-uoxMXNtZhD_e1b2Z_qOZjICc-cXQaE3Q-uztfCOhmgJMBgiHmmQ-PTNtvvRw8SqKD35mBCJAhgLD6BqHt_9seh2FgbSx65HSaSW96ej9JkE&amp;sa=X&amp;ved=2ahUKEwiai8SUyfGQAxVPgP0HHbI4AdIQ3PALegQIKRAE&amp;biw=1920&amp;bih=945&amp;dpr=1" target="_blank" rel="noopener">Google Reviews</a>
           <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">Instagram (@thejungleloft_galle)</a>
         </div>
       </div>
