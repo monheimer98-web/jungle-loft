@@ -78,23 +78,29 @@
     .hero-ctrls { position:absolute; right:16px; bottom:16px; display:flex; gap:8px; }
     .hero-ctrls button { backdrop-filter: blur(6px); background: rgba(255,255,255,.9); border:1px solid #e4e1d8; border-radius: 999px; padding:8px 10px; font-weight:700; cursor:pointer; }
 
-    /* Reviews under hero */
-    .reviews {
-      margin-top:-40px; /* leicht in den Hero geschoben */
-      padding: 0 0 80px;
-      background: linear-gradient(180deg, rgba(13,26,18,.04) 0%, rgba(13,26,18,.14) 100%);
-    }
-    .reviews > .container {
-      background:#0d1a12;
-      border-radius: var(--radius-xl);
-      padding:28px 32px 30px;
-      box-shadow: var(--shadow);
-      border:1px solid rgba(255,255,255,.05);
-      color:#e7efe9;
-      position:relative;
-      overflow:hidden;
-      max-width: 1240px; /* etwas breiter als der Rest */
-    }
+   /* Reviews under hero – clean band under hero, wider */
+.reviews {
+  padding: 40px 0 80px; /* sitzt jetzt sauber unter dem Hero */
+  margin-top: 0;
+  background: linear-gradient(180deg, rgba(13,26,18,.04) 0%, rgba(13,26,18,.14) 100%);
+}
+
+.reviews > .container {
+  background:#0d1a12;
+  border-radius: 32px;
+  padding:28px 40px 30px;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(255,255,255,.05);
+  color:#e7efe9;
+  position:relative;
+  overflow:hidden;
+
+  /* wirkt breiter als die normalen Sections */
+  width: calc(100% - 40px);   /* nur 20px Abstand links/rechts */
+  max-width: 1320px;          /* darf größer sein als dein normales container-Limit */
+  margin: 0 auto;
+}
+    
     .reviews > .container::before {
       content:''; position:absolute; inset:0;
       background:radial-gradient(circle at top left, rgba(201,176,138,.28), transparent 55%);
