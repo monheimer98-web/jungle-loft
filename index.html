@@ -1,18 +1,19 @@
-<!doctype html>  
+<!doctype html>   
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Jungle Loft – Luxury Boutique Hideaway | Galle, Sri Lanka</title>
-  <meta name="description" content="The Jungle Loft – a calm, luxury boutique hideaway on the edge of the jungle in Galle. Two private villas and two bungalows around a serene pool. Minutes to beaches & Galle Fort." />
+  <title>The Jungle Loft – Boutique Hotel in Galle, Sri Lanka</title>
+  <meta name="description" content="The Jungle Loft – a luxury boutique hotel and calm jungle hideaway in Galle, Sri Lanka. Only 4 rooms: two private villas and two bungalows around a serene pool. Minutes to beaches & Galle Fort." />
 
   <!-- SEO basics -->
   <meta name="robots" content="index,follow" />
+  <meta name="keywords" content="Galle boutique hotel, Galle hotel, Jungle Loft Galle, hotel in Galle Sri Lanka, boutique villas Galle, boutique stay Galle" />
   <link rel="canonical" href="https://thejungleloftgalle.com/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="The Jungle Loft – Luxury Boutique Hideaway" />
-  <meta property="og:description" content="Four intimate stays wrapped in greenery: two villas & two bungalows with a serene jungle pool. Near beaches & Galle Fort." />
+  <meta property="og:title" content="The Jungle Loft – Boutique Hotel in Galle, Sri Lanka" />
+  <meta property="og:description" content="A 4-room luxury boutique hotel in Galle: two villas & two bungalows wrapped in greenery, with a serene jungle pool. Near beaches & Galle Fort." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://thejungleloftgalle.com/" />
   <meta property="og:image" content="https://thejungleloftgalle.com/assets/og-image.jpg" />
@@ -58,8 +59,8 @@
 
     .muted { color: var(--muted); font-size:13px; }
 
-    /* Header */
-    header {
+    /* Header (site) */
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 60;
@@ -457,6 +458,20 @@
       #experiences .two-col { grid-template-columns: .9fr 1.1fr; }
     }
 
+    /* Experiences mobile order: text first, image second */
+    @media (max-width: 959px){
+      #experiences .two-col{
+        display:flex;
+        flex-direction:column;
+      }
+      #experiences .two-col .experiences-copy{
+        order:1;
+      }
+      #experiences .two-col .card{
+        order:2;
+      }
+    }
+
     /* Cards grid */
     .grid { display:grid; gap: 22px; }
     @media (min-width: 768px){ .grid-4 { grid-template-columns: repeat(4, 1fr); } }
@@ -480,6 +495,30 @@
     .card ul { margin: 0; padding-left: 18px; color: var(--muted); }
     .card li { margin: 4px 0; }
     .room-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+
+    /* Direct booking card – responsive */
+    .card-book{
+      flex-direction:row;
+      gap:0;
+      align-items:center;
+      overflow:hidden;
+    }
+    .card-book img{
+      height:220px;
+      width:320px;
+      object-fit:cover;
+      flex-shrink:0;
+    }
+    @media (max-width: 720px){
+      .card-book{
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .card-book img{
+        width:100%;
+        height:auto;
+      }
+    }
 
     /* Gallery */
     .gallery { display:grid; gap:12px; grid-template-columns: repeat(2, 1fr); }
@@ -699,7 +738,7 @@
 </head>
 <body>
   <!-- Header -->
-  <header>
+  <header class="site-header">
     <div class="container nav">
       <div class="logo">THE JUNGLE LOFT</div>
       <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -742,17 +781,17 @@
       <div class="hero-overlay"></div>
       <div class="hero-content container">
         <div>
-          <h1>A luxury jungle hideaway in Galle.</h1>
-          <p>Four intimate stays — two private villas and two bungalows — gathered around a serene pool. Minutes to beaches and the UNESCO-listed Galle Fort.</p>
+          <h1>A luxury jungle boutique hotel in Galle.</h1>
+          <p>Four intimate stays — two private villas and two bungalows — gathered around a serene pool. A calm, design-led boutique hotel in Galle, minutes to beaches and the UNESCO-listed Galle Fort.</p>
           <div class="chips" aria-label="Highlights">
             <div class="chip">Jungle pool</div>
             <div class="chip">Breakfast included</div>
-            <div class="chip">10 min to Galle Fort</div>
+            <div class="chip">Boutique hotel in Galle</div>
             <div class="chip">Only 4 rooms</div>
           </div>
           <div style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
             <a class="btn btn-primary" href="#availability">Check availability</a>
-            <a class="btn btn-ghost" href="#rooms">Explore the rooms</a>
+            <a class="btn btn-primary" href="#rooms">Explore the rooms</a>
           </div>
         </div>
       </div>
@@ -866,7 +905,7 @@
       <div class="reveal">
         <h2 class="section-title">A small sanctuary of green</h2>
         <p class="section-sub">On the edge of the jungle in Wanchawala, The Jungle Loft feels calm and close to nature — with palms, frangipani and birdsong around a quiet pool. From here, beaches and <a href="#location">Galle Fort</a> are just a short ride away.</p>
-        <p><a href="#rooms">Our four stays</a> — <em>Peacock Villa</em>, <em>Monkey Villa</em>, <em>Tropical Mango Bungalow</em> and <em>Golden Lotus Bungalow</em> — are crafted in a warm, natural palette with hand-picked antiques, local wood and soft linens. Morning light filters through the leaves, evenings are for tea on the terrace.</p>
+        <p>As a small boutique hotel in Galle with only four rooms, The Jungle Loft offers a more personal, tranquil experience than a typical Galle hotel. Morning light filters through the leaves, evenings are for tea on the terrace.</p>
       </div>
       <div class="card reveal">
         <img src="assets/place.jpg" alt="Open veranda with antique chest and garden view" loading="lazy" />
@@ -886,8 +925,8 @@
   <!-- ROOMS -->
   <section id="rooms">
     <div class="container">
-      <h2 class="section-title reveal">Suites &amp; Bungalows in Galle</h2>
-      <p class="section-sub reveal">Four individual spaces around the pool. Quiet, natural materials and plenty of greenery — made for unhurried days.</p>
+      <h2 class="section-title reveal">Suites &amp; Bungalows – Boutique hotel in Galle</h2>
+      <p class="section-sub reveal">Four individual spaces around the pool. Quiet, natural materials and plenty of greenery — a small Galle hotel made for unhurried days.</p>
       <div class="grid grid-4">
         <article class="card reveal">
           <img src="assets/rooms/peacock/cover.jpg" alt="Peacock Villa – bright bedroom with greenery views" loading="lazy">
@@ -1001,7 +1040,7 @@
           <p>Tell us what you’d love to experience — from a sunset tuk tuk ride to a full Sri Lankan spa ritual — and we’ll take care of the rest.</p>
         </div>
       </div>
-      <div class="reveal">
+      <div class="reveal experiences-copy">
         <h2 class="section-title">Experiences – More than a stay</h2>
         <p class="section-sub">Make your time in the jungle extra special. From in-room massages and private dinners to cooking classes, transfers and day trips — we’ll arrange everything for you.</p>
         <ul class="experiences-list">
@@ -1081,11 +1120,11 @@
   <!-- DIRECT BOOKING CTA -->
   <section id="book" aria-label="Direct booking">
     <div class="container">
-      <div class="card reveal" style="flex-direction:row; gap:0; align-items:center; overflow:hidden;">
-        <img loading="lazy" src="assets/offer.jpg" alt="Welcome drink tray by the pool" style="height:220px; width:320px; object-fit:cover;">
+      <div class="card card-book reveal">
+        <img loading="lazy" src="assets/offer.jpg" alt="Welcome drink tray by the pool">
         <div class="content" style="flex:1;">
           <h3>Direct booking benefits</h3>
-          <p>Always the best rate — plus a welcome drink.</p>
+          <p>Always the best rate — plus a welcome drink when you book directly via our official site.</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
             <a class="btn btn-primary" href="#" id="openModal">Get offer</a>
             <a class="btn btn-ghost" href="#contact">Request without obligation</a>
@@ -1195,7 +1234,7 @@
     <div class="container footer-main">
       <div class="footer-contact">
         <strong>The Jungle Loft – Galle, Sri Lanka</strong>
-        <div>Phone / WhatsApp: <a href="https://wa.me/94771346185" target="_blank" rel="noopener">+94 77 737 4747 / +94 77 134 6185</a> &nbsp;|&nbsp; <a href="mailto:jungleloftgalle@gmail.com">jungleloftgalle@gmail.com</a></div>
+        <div>Phone / WhatsApp: <a href="https://wa.me/94771346185" target="_blank" rel="noopener">+94 77 134 6185</a> &nbsp;|&nbsp; <a href="mailto:jungleloftgalle@gmail.com">jungleloftgalle@gmail.com</a></div>
         <div>Wattagewatta, Kaduruduwa, Wanchawala, Galle 80000</div>
         <div>Raw Luxury in Nature 🌿</div>
         <div class="footer-follow">
@@ -1208,7 +1247,7 @@
       <div>
         <div id="imprint" style="font-size:14px; opacity:.9; margin-bottom:8px;">
           <strong>Imprint:</strong>
-          <span>The Jungle Loft, Wattagewatta, Kaduruduwa, Wanchawala, 80120 Galle, Sri Lanka · Phone / WhatsApp: +94 77 134 6185 · Email: jungleloftgalle@gmail.com</span>
+          <span>The Jungle Loft, Wattagewatta, Kaduruduwa, Wanchawala, 80000 Galle, Sri Lanka · Phone / WhatsApp: +94 77 134 6185 · Email: jungleloftgalle@gmail.com</span>
         </div>
         <div id="privacy" style="font-size:14px; opacity:.9;">
           <strong>Privacy:</strong>
@@ -1488,7 +1527,7 @@
 
     // Mobile nav toggle
     const navToggle = document.querySelector('.nav-toggle');
-    const navList = document.querySelector('header nav ul');
+    const navList = document.querySelector('.site-header nav ul');
     if (navToggle && navList) {
       navToggle.addEventListener('click', () => {
         const isOpen = navList.classList.toggle('open');
@@ -1556,10 +1595,10 @@
 
     // Smooth scroll with offset for in-page anchors
     (function() {
-      const header = document.querySelector('header');
+      const headerEl = document.querySelector('.site-header');
       const getOffset = () => {
-        if (!header) return 90;
-        const h = header.getBoundingClientRect().height;
+        if (!headerEl) return 90;
+        const h = headerEl.getBoundingClientRect().height;
         return h + 16;
       };
 
@@ -1593,15 +1632,15 @@
     "@context": "https://schema.org",
     "@type": "Hotel",
     "name": "The Jungle Loft",
-    "image": ["https://thejungleloftgalle.com/assets/room.jpg"],
+    "image": ["https://thejungleloftgalle.com/assets/og-image.jpg"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Wattagewatta, Kaduruduwa, Wanchawala",
       "addressLocality": "Galle",
-      "postalCode": "80120",
+      "postalCode": "80000",
       "addressCountry": "LK"
     },
-    "telephone": "+94-77-737-4747",
+    "telephone": "+94-77-134-6185",
     "email": "jungleloftgalle@gmail.com",
     "url": "https://thejungleloftgalle.com/",
     "numberOfRooms": 4,
