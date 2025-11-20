@@ -1007,7 +1007,7 @@
           <ul>
             <li data-i18n="dining.li1">Freshly cooked every evening</li>
             <li data-i18n="dining.li2">Candle-lit private dining</li>
-            <li data-i18n="dining.li3">Signature dishes like Rice &amp; Curry or Catch of the Day</li>
+            <li data-i18n="dining.li3">Signature dishes like Rice & Curry or Catch of the Day</li>
             <li data-i18n="dining.li4">Cooking class available</li>
           </ul>
         </div>
@@ -2338,7 +2338,7 @@
     const sel = document.getElementById('langSel');
     const saved = localStorage.getItem('lang');
     const browserLang = (navigator.language || 'en').slice(0,2).toLowerCase();
-    const initialLang = saved || (browserLang === 'de' || browserLang === 'ru' ? browserLang : 'en');
+    const initialLang = saved || 'en';
     sel.value = initialLang;
     setLanguage(initialLang);
 
