@@ -1307,16 +1307,9 @@
           </p>
         </div>
       </header>
-      <div class="body">
-      <form id="voucherForm" class="reveal">
-  <label for="voucherEmail" data-i18n="modal.emailLabel">Email for voucher</label>
-  <input id="voucherEmail" name="email" type="email" required
-         data-i18n-placeholder="modal.emailPh" placeholder="john@example.com" />
-  
-  <div class="actions">
-    <button type="submit" class="btn btn-primary" data-i18n="modal.sendBtn">Send code</button>
-    <button type="button" class="btn btn-ghost" id="noThanks" data-i18n="modal.noThanks">No thanks</button>
-  </div>
+  <div class="body">
+  <div class="ml-embedded" data-form="VklMpT"></div>
+</div>
 
   <p id="voucherStatus" style="font-size:13px; margin-top:8px;"></p>
   <p style="font-size:12px; color:var(--muted);" data-i18n="modal.note">
@@ -2112,7 +2105,14 @@
     const openBtn = document.getElementById('openModal');
     const closeBtn = document.getElementById('closeModal');
     const noThanks = document.getElementById('noThanks');
-    function openModal(){ backdrop.style.display = 'flex'; }
+    function openModal(){
+  backdrop.style.display = 'flex';
+
+  // Reveal-Elemente im Modal sofort sichtbar machen
+  backdrop.querySelectorAll('.reveal').forEach(el=>{
+    el.classList.add('visible');
+  });
+}
     function closeModal(){ backdrop.style.display = 'none'; localStorage.setItem('popupDismissed', Date.now().toString()); }
     openBtn?.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); });
     closeBtn?.addEventListener('click', closeModal);
@@ -2337,41 +2337,6 @@
         });
       });
     })();
-// -----------------------------
-// Voucher form -> MailerLite (via backend endpoint)
-// -----------------------------
-const voucherForm = document.getElementById('voucherForm');
-const voucherEmail = document.getElementById('voucherEmail');
-const voucherStatus = document.getElementById('voucherStatus');
-
-voucherForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = voucherEmail?.value?.trim();
-  if (!email) return;
-
-  voucherStatus.textContent = "Sending your code...";
-
-  try {
-    const res = await fetch("/api/subscribe-voucher", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email })
-    });
-
-    if (!res.ok) throw new Error("Request failed");
-
-    voucherStatus.textContent =
-      "Perfect! Your -10% code is on its way. Please check your inbox.";
-    voucherForm.reset();
-
-    // optional: Modal automatisch schließen nach Erfolg
-    // closeModal();
-
-  } catch (err) {
-    voucherStatus.textContent =
-      "Sorry — something went wrong. Please try again or message us on WhatsApp.";
-  }
-});
     // -----------------------------
     // Init language from storage / browser
     // -----------------------------
@@ -2476,6 +2441,15 @@ voucherForm?.addEventListener('submit', async (e) => {
     ]
   }
   </script>
+<!-- MailerLite Universal -->
+<script>
+(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', '1937845');
+</script>
+<!-- End MailerLite Universal -->
 
 </body>
 </html>
