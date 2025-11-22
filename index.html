@@ -1308,15 +1308,21 @@
         </div>
       </header>
       <div class="body">
-        <form action="https://formspree.io/f/mjkpnkkl" method="POST">
-          <label for="voucherEmail" data-i18n="modal.emailLabel">Email for voucher</label>
-          <input id="voucherEmail" name="email" type="email" required data-i18n-placeholder="modal.emailPh" placeholder="john@example.com" />
-          <div class="actions">
-            <button type="submit" class="btn btn-primary" data-i18n="modal.sendBtn">Send code</button>
-            <button type="button" class="btn btn-ghost" id="noThanks" data-i18n="modal.noThanks">No thanks</button>
-          </div>
-          <p style="font-size:12px; color:var(--muted);" data-i18n="modal.note">No spam. You can unsubscribe anytime.</p>
-        </form>
+      <form id="voucherForm" class="reveal">
+  <label for="voucherEmail" data-i18n="modal.emailLabel">Email for voucher</label>
+  <input id="voucherEmail" name="email" type="email" required
+         data-i18n-placeholder="modal.emailPh" placeholder="john@example.com" />
+  
+  <div class="actions">
+    <button type="submit" class="btn btn-primary" data-i18n="modal.sendBtn">Send code</button>
+    <button type="button" class="btn btn-ghost" id="noThanks" data-i18n="modal.noThanks">No thanks</button>
+  </div>
+
+  <p id="voucherStatus" style="font-size:13px; margin-top:8px;"></p>
+  <p style="font-size:12px; color:var(--muted);" data-i18n="modal.note">
+    No spam. You can unsubscribe anytime.
+  </p>
+</form>
       </div>
     </div>
   </div>
@@ -2331,7 +2337,41 @@
         });
       });
     })();
+// -----------------------------
+// Voucher form -> MailerLite (via backend endpoint)
+// -----------------------------
+const voucherForm = document.getElementById('voucherForm');
+const voucherEmail = document.getElementById('voucherEmail');
+const voucherStatus = document.getElementById('voucherStatus');
 
+voucherForm?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = voucherEmail?.value?.trim();
+  if (!email) return;
+
+  voucherStatus.textContent = "Sending your code...";
+
+  try {
+    const res = await fetch("/api/subscribe-voucher", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+
+    if (!res.ok) throw new Error("Request failed");
+
+    voucherStatus.textContent =
+      "Perfect! Your -10% code is on its way. Please check your inbox.";
+    voucherForm.reset();
+
+    // optional: Modal automatisch schließen nach Erfolg
+    // closeModal();
+
+  } catch (err) {
+    voucherStatus.textContent =
+      "Sorry — something went wrong. Please try again or message us on WhatsApp.";
+  }
+});
     // -----------------------------
     // Init language from storage / browser
     // -----------------------------
