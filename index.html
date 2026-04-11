@@ -895,60 +895,94 @@
       line-height: 1.5;
       color: #385747;
     }
+    .voucher-success-code {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .voucher-success-pill {
+      display: inline-block;
+      border-radius: 999px;
+      border: 1px solid rgba(14,79,51,.22);
+      padding: 8px 14px;
+      letter-spacing: .08em;
+      font-size: 13px;
+      font-weight: 800;
+      color: #0e4f33;
+      background: #fff;
+    }
+    .voucher-copy-code {
+      border: 1px solid #d0ddcf;
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #294c3a;
+      cursor: pointer;
+    }
     .voucher-actions {
       display: flex;
       justify-content: flex-end;
       margin-top: 4px;
     }
-    .voucher-form-shell [class*="ml-form-embed"],
-    .voucher-form-shell [class*="ml-embedded"] {
-      width: 100% !important;
-      max-width: none !important;
-      background: transparent !important;
-      border: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
+    .voucher-form {
+      display: grid;
+      gap: 10px;
     }
-    .voucher-form-shell .ml-form-embedContent,
-    .voucher-form-shell .ml-form-successBody,
-    .voucher-form-shell .ml-form-formContent {
-      margin: 0 !important;
-      padding: 0 !important;
+    .voucher-form-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #3f5a4b;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
-    .voucher-form-shell .ml-form-formContent h4,
-    .voucher-form-shell .ml-form-formContent p {
-      display: none !important;
+    .voucher-form input[type="email"],
+    .voucher-form input[type="text"] {
+      width: 100%;
+      border: 1px solid #cfdacd;
+      border-radius: 999px;
+      min-height: 50px;
+      padding: 10px 18px;
+      background: #fff;
+      color: #0b1f16;
+      box-sizing: border-box;
+      font: inherit;
     }
-    .voucher-form-shell input[type="email"],
-    .voucher-form-shell input[type="text"] {
-      width: 100% !important;
-      border: 1px solid #cfdacd !important;
-      border-radius: 999px !important;
-      min-height: 48px !important;
-      padding: 10px 16px !important;
-      background: #fff !important;
-      color: #0b1f16 !important;
-      box-sizing: border-box !important;
+    .voucher-form input[type="email"]:focus {
+      outline: 2px solid rgba(14,79,51,.24);
+      outline-offset: 2px;
     }
-    .voucher-form-shell button,
-    .voucher-form-shell .primary,
-    .voucher-form-shell .ml-form-embedSubmit button {
-      width: 100% !important;
-      border: 0 !important;
-      border-radius: 999px !important;
-      min-height: 48px !important;
-      background: linear-gradient(135deg, #0e4f33, #1e7350) !important;
-      color: #fff !important;
-      font-weight: 700 !important;
-      letter-spacing: .02em !important;
-      cursor: pointer !important;
+    .voucher-submit {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      min-height: 50px;
+      background: linear-gradient(135deg, #0e4f33, #1e7350);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: .02em;
+      cursor: pointer;
+      font: inherit;
+      transition: transform .18s ease, filter .18s ease;
     }
-    .voucher-form-shell .ml-form-successBody {
-      color: #214c36 !important;
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 1.5;
-      padding: 6px 0 !important;
+    .voucher-submit:hover { transform: translateY(-1px); filter: brightness(1.03); }
+    .voucher-submit[disabled] { opacity: .75; cursor: wait; }
+    .voucher-form-status {
+      min-height: 18px;
+      margin: 0;
+      font-size: 12px;
+      color: #5a6e62;
+    }
+    .voucher-form-status.error { color: #8e2d2d; }
+    .voucher-form-status.ok { color: #25553c; }
+    .voucher-legal {
+      margin: 0;
+      font-size: 11px;
+      color: #6d7f74;
+      line-height: 1.45;
     }
     body.modal-open { overflow: hidden; }
     .voucher-copy.is-success .voucher-form-shell,
@@ -1590,11 +1624,22 @@
             Only here on the official website. Code: <strong>DIRECT10</strong>
           </p>
           <div class="voucher-form-shell">
-            <div class="ml-embedded" data-form="VklMpT"></div>
+            <form id="voucherForm" class="voucher-form" novalidate>
+              <label class="voucher-form-label" for="voucherEmail" data-i18n="modal.emailLabel">Email for voucher</label>
+              <input id="voucherEmail" name="email" type="email" required autocomplete="email" data-i18n-placeholder="modal.emailPh" placeholder="john@example.com">
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;">
+              <button type="submit" class="voucher-submit" id="voucherSubmit" data-i18n="modal.sendBtn">Send code</button>
+              <p class="voucher-form-status" id="voucherFormStatus" aria-live="polite"></p>
+              <p class="voucher-legal">By submitting, you agree to receive your voucher email and occasional direct-booking updates.</p>
+            </form>
           </div>
           <div class="voucher-success" id="voucherSuccess" aria-live="polite">
             <h4 data-i18n="modal.successTitle">Perfect. Your private code is on the way.</h4>
             <p data-i18n="modal.successText">Please check your inbox now. If needed, also look in Promotions or Spam and move the email to your main inbox.</p>
+            <div class="voucher-success-code">
+              <span class="voucher-success-pill">DIRECT10</span>
+              <button type="button" class="voucher-copy-code" id="voucherCopyCode" data-i18n="modal.copyBtn">Copy code</button>
+            </div>
           </div>
           <div class="voucher-actions">
             <button type="button" class="btn btn-ghost" id="noThanks" data-i18n="modal.noThanks">No thanks</button>
@@ -1808,9 +1853,15 @@
           sub: "Join our private guest list and receive your <strong>10% DIRECT10</strong> welcome voucher by email.",
           successTitle: "Perfect. Your private code is on the way.",
           successText: "Please check your inbox now. If needed, also look in Promotions or Spam and move the email to your main inbox.",
+          successInline: "Perfect. Your voucher email is on the way.",
+          sending: "Sending your private code...",
+          invalidEmail: "Please enter a valid email address.",
+          error: "Something went wrong. Please try again or contact us via WhatsApp.",
           emailLabel: "Email for voucher",
           emailPh: "john@example.com",
           sendBtn: "Send code",
+          copyBtn: "Copy code",
+          copied: "Copied",
           noThanks: "No thanks",
           note: "Short email. Beautiful details. Zero spam."
         },
@@ -2018,9 +2069,15 @@
           sub: "Tragen Sie sich in unsere private Gästeliste ein und erhalten Sie Ihren <strong>10% DIRECT10</strong> Willkommens-Code per E-Mail.",
           successTitle: "Perfekt. Ihr privater Code ist unterwegs.",
           successText: "Bitte prüfen Sie jetzt Ihren Posteingang. Falls nötig, auch den Werbe- oder Spam-Ordner.",
+          successInline: "Perfekt. Ihre Gutschein-Mail ist unterwegs.",
+          sending: "Ihr privater Code wird gesendet...",
+          invalidEmail: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+          error: "Etwas ist schiefgelaufen. Bitte erneut versuchen oder per WhatsApp schreiben.",
           emailLabel: "E-Mail für den Gutschein",
           emailPh: "max@example.com",
           sendBtn: "Code senden",
+          copyBtn: "Code kopieren",
+          copied: "Kopiert",
           noThanks: "Nein, danke",
           note: "Kurze E-Mail. Starke Eindrücke. Kein Spam."
         },
@@ -2228,9 +2285,15 @@
           sub: "Вступите в наш приватный список гостей и получите <strong>10% DIRECT10</strong> приветственный код на e-mail.",
           successTitle: "Отлично. Ваш персональный код уже отправлен.",
           successText: "Проверьте входящие. При необходимости откройте вкладку Promotions или папку Spam.",
+          successInline: "Отлично. Письмо с ваучером уже отправлено.",
+          sending: "Отправляем ваш приватный код...",
+          invalidEmail: "Пожалуйста, введите корректный e-mail.",
+          error: "Что-то пошло не так. Попробуйте снова или напишите нам в WhatsApp.",
           emailLabel: "E-mail для ваучера",
           emailPh: "ivan@example.com",
           sendBtn: "Отправить код",
+          copyBtn: "Скопировать код",
+          copied: "Скопировано",
           noThanks: "Нет, спасибо",
           note: "Короткое письмо. Красивые детали. Без спама."
         },
@@ -2401,7 +2464,33 @@
     const openBtn = document.getElementById('openModal');
     const closeBtn = document.getElementById('closeModal');
     const noThanks = document.getElementById('noThanks');
-    const mlEmbed = document.querySelector('.ml-embedded');
+    const voucherForm = document.getElementById('voucherForm');
+    const voucherEmail = document.getElementById('voucherEmail');
+    const voucherSubmit = document.getElementById('voucherSubmit');
+    const voucherFormStatus = document.getElementById('voucherFormStatus');
+    const voucherCopyCode = document.getElementById('voucherCopyCode');
+    const VOUCHER_FORM_ENDPOINT = 'https://formsubmit.co/ajax/jungleloftgalle@gmail.com';
+
+    function voucherText(key, fallback){
+      return translations[getCurrentLang()]?.modal?.[key] || fallback;
+    }
+    function setVoucherStatus(message, type){
+      if (!voucherFormStatus) return;
+      voucherFormStatus.textContent = message || '';
+      voucherFormStatus.classList.remove('error', 'ok');
+      if (type) voucherFormStatus.classList.add(type);
+    }
+    function showVoucherSuccess(){
+      localStorage.setItem('voucherSubscribedAt', Date.now().toString());
+      localStorage.setItem('popupDismissed', Date.now().toString());
+      modalCopy?.classList.add('is-success');
+      voucherSuccess?.classList.add('show');
+      setVoucherStatus('');
+      setTimeout(() => {
+        if (backdrop?.style.display === 'flex') closeModal();
+      }, 4800);
+    }
+
     function openModal(){
       if (!backdrop) return;
       backdrop.style.display = 'flex';
@@ -2420,27 +2509,51 @@
     noThanks?.addEventListener('click', closeModal);
     backdrop?.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
 
-    if (mlEmbed) {
-      const onMlSuccess = () => {
-        localStorage.setItem('voucherSubscribedAt', Date.now().toString());
-        localStorage.setItem('popupDismissed', Date.now().toString());
-        modalCopy?.classList.add('is-success');
-        voucherSuccess?.classList.add('show');
-        setTimeout(() => {
-          if (backdrop?.style.display === 'flex') closeModal();
-        }, 4500);
-      };
+    voucherForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (voucherEmail?.value || '').trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setVoucherStatus(voucherText('invalidEmail', 'Please enter a valid email address.'), 'error');
+        voucherEmail?.focus();
+        return;
+      }
 
-      const mlObserver = new MutationObserver(() => {
-        const successNode =
-          mlEmbed.querySelector('.ml-form-successBody') ||
-          mlEmbed.querySelector('.ml-form-success');
-        if (successNode && successNode.textContent.trim().length > 0) {
-          onMlSuccess();
-        }
-      });
-      mlObserver.observe(mlEmbed, { childList: true, subtree: true, attributes: true });
-    }
+      voucherSubmit.disabled = true;
+      setVoucherStatus(voucherText('sending', 'Sending your private code...'));
+
+      try {
+        const payload = new FormData(voucherForm);
+        payload.append('_subject', 'New DIRECT10 voucher signup');
+        payload.append('_captcha', 'false');
+        payload.append('_template', 'table');
+        payload.append('_autoresponse', 'Thank you for your interest in The Jungle Loft. Your private voucher code is DIRECT10. We look forward to welcoming you in Galle.');
+
+        const res = await fetch(VOUCHER_FORM_ENDPOINT, {
+          method: 'POST',
+          body: payload,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('submit_failed');
+
+        voucherForm.reset();
+        setVoucherStatus(voucherText('successInline', 'Perfect. Your voucher email is on the way.'), 'ok');
+        showVoucherSuccess();
+      } catch (_) {
+        setVoucherStatus(voucherText('error', 'Something went wrong. Please try again or contact us via WhatsApp.'), 'error');
+      } finally {
+        voucherSubmit.disabled = false;
+      }
+    });
+
+    voucherCopyCode?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('DIRECT10');
+        voucherCopyCode.textContent = voucherText('copied', 'Copied');
+        setTimeout(() => { voucherCopyCode.textContent = voucherText('copyBtn', 'Copy code'); }, 1700);
+      } catch (_) {
+        voucherCopyCode.textContent = 'DIRECT10';
+      }
+    });
 
     const lastDismiss = parseInt(localStorage.getItem('popupDismissed') || '0', 10);
     const subscribedAt = parseInt(localStorage.getItem('voucherSubscribedAt') || '0', 10);
@@ -2771,15 +2884,5 @@
     ]
   }
   </script>
-<!-- MailerLite Universal -->
-<script>
-(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-ml('account', '1937845');
-</script>
-<!-- End MailerLite Universal -->
-
 </body>
 </html>
