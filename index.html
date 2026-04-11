@@ -2523,6 +2523,10 @@
 
       try {
         const payload = new FormData(voucherForm);
+        payload.append('name', 'Jungle Loft Guest');
+        payload.append('source', 'website_voucher_popup');
+        payload.append('message', 'Voucher signup request for DIRECT10');
+        payload.append('_replyto', email);
         payload.append('_subject', 'New DIRECT10 voucher signup');
         payload.append('_captcha', 'false');
         payload.append('_template', 'table');
