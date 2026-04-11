@@ -1615,13 +1615,13 @@
             <img src="assets/place.jpg" alt="">
             <img src="assets/gallery/6.jpg" alt="">
           </div>
-          <div class="voucher-badge">PRIVATE OFFER · DIRECT10</div>
+          <div class="voucher-badge">PRIVATE OFFER · 10% DIRECT BOOKING</div>
         </div>
         <div class="voucher-copy">
           <p class="voucher-kicker" data-i18n="modal.kicker">Exclusive Direct Booking</p>
           <h3 id="modalTitle" data-i18n="modal.h3">Direct booking: −10%</h3>
           <p class="voucher-sub" data-i18n-html="modal.sub">
-            Only here on the official website. Code: <strong>DIRECT10</strong>
+            Join our private guest list and receive your welcome offer by email.
           </p>
           <div class="voucher-form-shell">
             <form id="voucherForm" class="voucher-form" novalidate>
@@ -1850,7 +1850,7 @@
         modal: {
           kicker: "Exclusive Direct Booking",
           h3: "Direct booking: −10%",
-          sub: "Join our private guest list and receive your <strong>10% DIRECT10</strong> welcome voucher by email.",
+          sub: "Join our private guest list and receive your 10% welcome offer by email.",
           successTitle: "Perfect. Your private code is on the way.",
           successText: "Please check your inbox now. If needed, also look in Promotions or Spam and move the email to your main inbox.",
           successInline: "Perfect. Your voucher email is on the way.",
@@ -2066,7 +2066,7 @@
         modal: {
           kicker: "Exklusives Direktangebot",
           h3: "Direktbuchung: −10%",
-          sub: "Tragen Sie sich in unsere private Gästeliste ein und erhalten Sie Ihren <strong>10% DIRECT10</strong> Willkommens-Code per E-Mail.",
+          sub: "Tragen Sie sich in unsere private Gästeliste ein und erhalten Sie Ihr 10%-Willkommensangebot per E-Mail.",
           successTitle: "Perfekt. Ihr privater Code ist unterwegs.",
           successText: "Bitte prüfen Sie jetzt Ihren Posteingang. Falls nötig, auch den Werbe- oder Spam-Ordner.",
           successInline: "Perfekt. Ihre Gutschein-Mail ist unterwegs.",
@@ -2282,7 +2282,7 @@
         modal: {
           kicker: "Эксклюзивное прямое предложение",
           h3: "Прямое бронирование: −10%",
-          sub: "Вступите в наш приватный список гостей и получите <strong>10% DIRECT10</strong> приветственный код на e-mail.",
+          sub: "Вступите в наш приватный список гостей и получите приветственное предложение 10% на e-mail.",
           successTitle: "Отлично. Ваш персональный код уже отправлен.",
           successText: "Проверьте входящие. При необходимости откройте вкладку Promotions или папку Spam.",
           successInline: "Отлично. Письмо с ваучером уже отправлено.",
@@ -2526,7 +2526,7 @@
         payload.append('_subject', 'New DIRECT10 voucher signup');
         payload.append('_captcha', 'false');
         payload.append('_template', 'table');
-        payload.append('_autoresponse', 'Thank you for your interest in The Jungle Loft. Your private voucher code is DIRECT10. We look forward to welcoming you in Galle.');
+        payload.append('_autoresponse', 'Hi and thank you for your interest in The Jungle Loft.\\n\\nWe are delighted to welcome you to our small luxury jungle hideaway in Galle, with only four private stays, a serene tropical pool, and highly personal service.\\n\\nYour private direct-booking voucher code is: DIRECT10\\n\\nUse this code when booking directly with us to enjoy your exclusive 10% welcome offer.\\n\\nWarm regards,\\nThe Jungle Loft Team\\nGalle, Sri Lanka');
 
         const res = await fetch(VOUCHER_FORM_ENDPOINT, {
           method: 'POST',
