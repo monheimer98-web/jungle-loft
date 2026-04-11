@@ -43,6 +43,11 @@
   <meta name="twitter:image" content="https://thejungleloftgalle.com/assets/og-image.jpg" />
   <meta name="twitter:image:alt" content="The Jungle Loft Galle – boutique hotel with tropical pool and greenery" />
 
+  <!-- Optional secure voucher endpoint (e.g. Cloudflare Worker + Resend) -->
+  <script>
+    window.VOUCHER_API_ENDPOINT = window.VOUCHER_API_ENDPOINT || '';
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQZJQR4DXM"></script>
   <script>
@@ -2469,7 +2474,9 @@
     const voucherSubmit = document.getElementById('voucherSubmit');
     const voucherFormStatus = document.getElementById('voucherFormStatus');
     const voucherCopyCode = document.getElementById('voucherCopyCode');
-    const VOUCHER_FORM_ENDPOINT = 'https://formsubmit.co/ajax/jungleloftgalle@gmail.com';
+    // Preferred: secure backend endpoint (e.g. Cloudflare Worker with Resend)
+    // Fallback keeps current flow active until backend is live.
+    const VOUCHER_FORM_ENDPOINT = window.VOUCHER_API_ENDPOINT || 'https://formsubmit.co/ajax/jungleloftgalle@gmail.com';
 
     function voucherText(key, fallback){
       return translations[getCurrentLang()]?.modal?.[key] || fallback;
@@ -2522,21 +2529,39 @@
       setVoucherStatus(voucherText('sending', 'Sending your private code...'));
 
       try {
-        const payload = new FormData(voucherForm);
-        payload.append('name', 'Jungle Loft Guest');
-        payload.append('source', 'website_voucher_popup');
-        payload.append('message', 'Voucher signup request for DIRECT10');
-        payload.append('_replyto', email);
-        payload.append('_subject', 'New DIRECT10 voucher signup');
-        payload.append('_captcha', 'false');
-        payload.append('_template', 'table');
-        payload.append('_autoresponse', 'Hi and thank you for your interest in The Jungle Loft.\\n\\nWe are delighted to welcome you to our small luxury jungle hideaway in Galle, with only four private stays, a serene tropical pool, and highly personal service.\\n\\nYour private direct-booking voucher code is: DIRECT10\\n\\nUse this code when booking directly with us to enjoy your exclusive 10% welcome offer.\\n\\nWarm regards,\\nThe Jungle Loft Team\\nGalle, Sri Lanka');
+        let res;
+        const usingFormSubmit = /formsubmit\.co/i.test(VOUCHER_FORM_ENDPOINT);
 
-        const res = await fetch(VOUCHER_FORM_ENDPOINT, {
-          method: 'POST',
-          body: payload,
-          headers: { 'Accept': 'application/json' }
-        });
+        if (usingFormSubmit) {
+          const payload = new FormData(voucherForm);
+          payload.append('name', 'Jungle Loft Guest');
+          payload.append('source', 'website_voucher_popup');
+          payload.append('message', 'Voucher signup request for DIRECT10');
+          payload.append('_replyto', email);
+          payload.append('_subject', 'New DIRECT10 voucher signup');
+          payload.append('_captcha', 'false');
+          payload.append('_template', 'table');
+          payload.append('_autoresponse', 'Hi and thank you for your interest in The Jungle Loft.\\n\\nWe are delighted to welcome you to our small luxury jungle hideaway in Galle, with only four private stays, a serene tropical pool, and highly personal service.\\n\\nYour private direct-booking voucher code is: DIRECT10\\n\\nUse this code when booking directly with us to enjoy your exclusive 10% welcome offer.\\n\\nWarm regards,\\nThe Jungle Loft Team\\nGalle, Sri Lanka');
+          res = await fetch(VOUCHER_FORM_ENDPOINT, {
+            method: 'POST',
+            body: payload,
+            headers: { 'Accept': 'application/json' }
+          });
+        } else {
+          res = await fetch(VOUCHER_FORM_ENDPOINT, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              email,
+              lang: getCurrentLang(),
+              voucherCode: 'DIRECT10',
+              source: 'website_voucher_popup'
+            })
+          });
+        }
         if (!res.ok) throw new Error('submit_failed');
 
         voucherForm.reset();
