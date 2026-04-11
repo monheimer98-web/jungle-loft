@@ -3,30 +3,60 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Jungle Loft – Boutique Hotel in Galle, Sri Lanka</title>
-  <meta name="description" content="The Jungle Loft – a luxury boutique hotel and calm jungle hideaway in Galle, Sri Lanka. Only 4 rooms: two private villas and two bungalows around a serene pool. Minutes to beaches & Galle Fort." />
+  <title>The Jungle Loft – Boutique Hotel & Luxury Accommodation in Galle, Sri Lanka</title>
+  <meta name="description" content="Looking for a hotel in Galle, Sri Lanka? The Jungle Loft is a luxury boutique accommodation with 4 private villas and bungalows, a serene jungle pool, and quick access to Galle Fort and beaches." />
+  <meta name="theme-color" content="#0e4f33" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
 
   <!-- SEO basics -->
   <meta name="robots" content="index,follow" />
   <meta name="keywords" content="Galle boutique hotel, Galle hotel, Jungle Loft Galle, hotel in Galle Sri Lanka, boutique villas Galle, boutique stay Galle" />
   <link rel="canonical" href="https://thejungleloftgalle.com/" />
+  <link rel="alternate" hreflang="en" href="https://thejungleloftgalle.com/" />
+  <link rel="alternate" hreflang="de" href="https://thejungleloftgalle.com/" />
+  <link rel="alternate" hreflang="ru" href="https://thejungleloftgalle.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://thejungleloftgalle.com/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="The Jungle Loft – Boutique Hotel in Galle, Sri Lanka" />
-  <meta property="og:description" content="A 4-room luxury boutique hotel in Galle: two villas & two bungalows wrapped in greenery, with a serene jungle pool. Near beaches & Galle Fort." />
+  <meta property="og:title" content="The Jungle Loft – Boutique Hotel & Luxury Accommodation in Galle" />
+  <meta property="og:description" content="Luxury boutique hotel in Galle with only 4 exclusive stays, a jungle pool, and a calm location close to beaches and Galle Fort." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://thejungleloftgalle.com/" />
   <meta property="og:image" content="https://thejungleloftgalle.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="1600" />
+  <meta property="og:image:alt" content="The Jungle Loft Galle – boutique hotel with tropical pool and greenery" />
   <meta property="og:site_name" content="The Jungle Loft – Galle" />
   <meta property="og:locale" content="en_US" />
 
-  <!-- GA4: replace G-XXXXXXXXXX with your real Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Jungle Loft – Boutique Hotel & Luxury Accommodation in Galle" />
+  <meta name="twitter:description" content="Luxury boutique hotel in Galle with only 4 exclusive stays, a jungle pool, and easy access to beaches and Galle Fort." />
+  <meta name="twitter:image" content="https://thejungleloftgalle.com/assets/og-image.jpg" />
+  <meta name="twitter:image:alt" content="The Jungle Loft Galle – boutique hotel with tropical pool and greenery" />
+
+  <!-- GA4: replace this once with your real Measurement ID -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    window.GA_MEASUREMENT_ID = "G-WQZJQR4DXM";
+  </script>
+  <script>
+    (function() {
+      var gaId = window.GA_MEASUREMENT_ID;
+      if (!gaId || !/^G-[A-Z0-9]+$/i.test(gaId)) return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', gaId);
+    })();
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -720,13 +750,224 @@
     .whatsapp-float:hover { filter:brightness(1.05); }
 
     /* Modal (Popup) */
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(5,20,10,.65); display:none; align-items:center; justify-content:center; z-index: 90; padding: 20px; }
-    .modal { max-width: 560px; width: 100%; background: white; border-radius: 22px; border:1px solid #e4e1d8; box-shadow: 0 40px 80px rgba(5,20,10,.25); overflow:hidden; }
-    .modal header { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border:0; }
-    .modal header .container { padding: 18px; }
-    .modal .body { padding: 18px; color: var(--text); }
-    .modal .actions { display:flex; gap:10px; padding: 0 18px 18px; }
-    .close-x { position:absolute; top: 10px; right: 14px; font-weight:800; color:white; cursor:pointer; opacity:.95; }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(201,176,138,.25), rgba(5,20,10,.82)),
+        rgba(5,20,10,.8);
+      backdrop-filter: blur(4px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 120;
+      padding: 20px;
+    }
+    .modal-voucher {
+      max-width: 920px;
+      width: 100%;
+      background: #f7f4eb;
+      border-radius: 24px;
+      border: 1px solid rgba(201,176,138,.6);
+      box-shadow: 0 36px 90px rgba(5,20,10,.42);
+      overflow: hidden;
+      position: relative;
+    }
+    .close-x {
+      position:absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.45);
+      background: rgba(10,26,20,.55);
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .voucher-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: 480px;
+    }
+    .voucher-visual {
+      position: relative;
+      overflow: hidden;
+      background: #0c2a1e;
+    }
+    .voucher-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.06) contrast(1.04);
+    }
+    .voucher-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,26,20,.08), rgba(10,26,20,.52));
+    }
+    .voucher-badge {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1;
+      background: rgba(255,255,255,.92);
+      color: #153424;
+      border: 1px solid rgba(201,176,138,.9);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      letter-spacing: .1em;
+      font-weight: 800;
+    }
+    .voucher-mini-gallery {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      z-index: 1;
+      display: flex;
+      gap: 8px;
+    }
+    .voucher-mini-gallery img {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: 0 10px 24px rgba(4,16,11,.3);
+    }
+    .voucher-copy {
+      padding: 40px 34px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      color: var(--text);
+      background: linear-gradient(180deg, #f7f4eb 0%, #f2ecde 100%);
+    }
+    .voucher-kicker {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-size: 11px;
+      color: #577060;
+      font-weight: 700;
+    }
+    .voucher-copy h3 {
+      margin: 0;
+      font-size: clamp(28px, 3.6vw, 40px);
+      line-height: 1.05;
+    }
+    .voucher-sub {
+      margin: 0;
+      color: #374d40;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .voucher-form-shell {
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(201,176,138,.55);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .voucher-note {
+      margin: 0;
+      font-size: 12px;
+      color: #5e7265;
+    }
+    .voucher-success {
+      display: none;
+      background: linear-gradient(160deg, #f6f5f0, #ebe4d4);
+      border: 1px solid rgba(201,176,138,.65);
+      border-radius: 16px;
+      padding: 18px 16px;
+      color: #1d3f2d;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+    }
+    .voucher-success.show { display: block; }
+    .voucher-success h4 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      line-height: 1.15;
+      font-family: Marcellus, serif;
+    }
+    .voucher-success p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #385747;
+    }
+    .voucher-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+    .voucher-form-shell [class*="ml-form-embed"],
+    .voucher-form-shell [class*="ml-embedded"] {
+      width: 100% !important;
+      max-width: none !important;
+      background: transparent !important;
+      border: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .voucher-form-shell .ml-form-embedContent,
+    .voucher-form-shell .ml-form-successBody,
+    .voucher-form-shell .ml-form-formContent {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .voucher-form-shell .ml-form-formContent h4,
+    .voucher-form-shell .ml-form-formContent p {
+      display: none !important;
+    }
+    .voucher-form-shell input[type="email"],
+    .voucher-form-shell input[type="text"] {
+      width: 100% !important;
+      border: 1px solid #cfdacd !important;
+      border-radius: 999px !important;
+      min-height: 48px !important;
+      padding: 10px 16px !important;
+      background: #fff !important;
+      color: #0b1f16 !important;
+      box-sizing: border-box !important;
+    }
+    .voucher-form-shell button,
+    .voucher-form-shell .primary,
+    .voucher-form-shell .ml-form-embedSubmit button {
+      width: 100% !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      min-height: 48px !important;
+      background: linear-gradient(135deg, #0e4f33, #1e7350) !important;
+      color: #fff !important;
+      font-weight: 700 !important;
+      letter-spacing: .02em !important;
+      cursor: pointer !important;
+    }
+    .voucher-form-shell .ml-form-successBody {
+      color: #214c36 !important;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 6px 0 !important;
+    }
+    body.modal-open { overflow: hidden; }
+    .voucher-copy.is-success .voucher-form-shell,
+    .voucher-copy.is-success .voucher-actions,
+    .voucher-copy.is-success .voucher-note {
+      display: none;
+    }
+    @media (max-width: 860px) {
+      .voucher-layout { grid-template-columns: 1fr; }
+      .voucher-visual { height: 220px; }
+      .voucher-copy { padding: 28px 20px 20px; }
+    }
 
     /* Forms */
     form { display:grid; gap:12px; }
@@ -817,7 +1058,7 @@
         <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">
           <span class="icon">🅣</span><span>TripAdvisor</span>
         </a>
-        <a href="https://www.google.com/search?sca_esv=4fc95be2d6bdf9cb&amp;hl=de-DE&amp;gl=de&amp;sxsrf=AE3TifMX36fW2BHiwuVOCrlmoNtR_6N74A:1763120893729&amp;q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka&amp;si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E714FDjFuTLqevpe9x1azEfTPMoH9cTgJEyZQkjGgCBo2Hqj6zOakVeAkBMNeAyRpLitVdQ%3D&amp;uds=AOm0WdF__6nd2gjWcfyjlqp8kBmtcNDAkhtmji83-ww7K2wyFQnybZemtLU_mC6G5JXQeOvXxdj-uoxMXNtZhD_e1b2Z_qOZjICc-cXQaE3Q-uztfCOhmgJMBgiHmmQ-PTNtvvRw8SqKD35mBCJAhgLD6BqHt_9seh2FgbSx65HSaSW96ej9JkE&amp;sa=X&amp;ved=2ahUKEwiai8SUyfGQAxVPgP0HHbI4AdIQ3PALegQIKRAE&amp;biw=1920&amp;bih=945&amp;dpr=1" target="_blank" rel="noopener">
+        <a href="https://share.google/IypPoJ95KgBhtnLpE" target="_blank" rel="noopener">
           <span class="icon">🅖</span><span data-i18n="reviews.google">Google Reviews</span>
         </a>
         <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">
@@ -1235,6 +1476,47 @@
     </div>
   </section>
 
+  <section id="galle-guides" aria-label="Galle hotel guides">
+    <div class="container">
+      <h2 class="section-title">Hotel & Accommodation Guides</h2>
+      <p class="section-sub">Explore dedicated pages for guests searching hotels and accommodation in Galle.</p>
+      <div class="grid grid-4">
+        <article class="card">
+          <img src="assets/place.jpg" alt="Hotel in Galle guide page">
+          <div class="content">
+            <h3 style="margin:0;">Hotel in Galle</h3>
+            <p>Find out why The Jungle Loft is a leading choice for travelers looking for a hotel in Galle.</p>
+            <a class="btn btn-ghost" href="/hotel-in-galle/">Read Guide</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="assets/rooms/peacock/cover.jpg" alt="Boutique hotel in Galle guide page">
+          <div class="content">
+            <h3 style="margin:0;">Boutique Hotel Galle</h3>
+            <p>See what makes a true boutique hotel experience in Galle and how we deliver it.</p>
+            <a class="btn btn-ghost" href="/boutique-hotel-galle/">Read Guide</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="assets/rooms/monkey/cover.jpg" alt="Luxury accommodation in Galle guide page">
+          <div class="content">
+            <h3 style="margin:0;">Luxury Accommodation Galle</h3>
+            <p>Discover private high-end accommodation in Galle for couples and restful escapes.</p>
+            <a class="btn btn-ghost" href="/luxury-accommodation-galle/">Read Guide</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="assets/gallery/6.jpg" alt="Google Maps profile of The Jungle Loft">
+          <div class="content">
+            <h3 style="margin:0;">Google Maps Profile</h3>
+            <p>Open our verified Google Maps listing for location, reviews, and direct directions.</p>
+            <a class="btn btn-ghost" href="https://share.google/IypPoJ95KgBhtnLpE" target="_blank" rel="noopener">Open Maps</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer>
     <div class="container footer-main">
@@ -1248,7 +1530,7 @@
         <div class="footer-follow">
           <span data-i18n="footer.follow">Follow us:</span>
           <a href="https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html" target="_blank" rel="noopener">TripAdvisor</a>
-          <a href="https://www.google.com/search?sca_esv=4fc95be2d6bdf9cb&amp;hl=de-DE&amp;gl=de&amp;sxsrf=AE3TifMX36fW2BHiwuVOCrlmoNtR_6N74A:1763120893729&amp;q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka&amp;si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E714FDjFuTLqevpe9x1azEfTPMoH9cTgJEyZQkjGgCBo2Hqj6zOakVeAkBMNeAyRpLitVdQ%3D&amp;uds=AOm0WdF__6nd2gjWcfyjlqp8kBmtcNDAkhtmji83-ww7K2wyFQnybZemtLU_mC6G5JXQeOvXxdj-uoxMXNtZhD_e1b2Z_qOZjICc-cXQaE3Q-uztfCOhmgJMBgiHmmQ-PTNtvvRw8SqKD35mBCJAhgLD6BqHt_9seh2FgbSx65HSaSW96ej9JkE&amp;sa=X&amp;ved=2ahUKEwiai8SUyfGQAxVPgP0HHbI4AdIQ3PALegQIKRAE&amp;biw=1920&amp;bih=945&amp;dpr=1" target="_blank" rel="noopener" data-i18n="footer.google">Google Reviews</a>
+          <a href="https://share.google/IypPoJ95KgBhtnLpE" target="_blank" rel="noopener" data-i18n="footer.google">Google Reviews</a>
           <a href="https://www.instagram.com/thejungleloft_galle/" target="_blank" rel="noopener">Instagram (@thejungleloft_galle)</a>
         </div>
       </div>
@@ -1297,25 +1579,35 @@
 
   <!-- Modal: Direct booking / Pop-up -->
   <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal">
-      <header>
-        <div class="container" style="position:relative;">
-          <div class="close-x" id="closeModal" aria-label="Close pop-up">×</div>
-          <h3 id="modalTitle" style="margin:0;" data-i18n="modal.h3">Direct booking: −10%</h3>
-          <p style="margin:6px 0 0; opacity:.95;" data-i18n-html="modal.sub">
+    <div class="modal-voucher">
+      <button type="button" class="close-x" id="closeModal" aria-label="Close pop-up">×</button>
+      <div class="voucher-layout">
+        <div class="voucher-visual" aria-hidden="true">
+          <img src="assets/offer.jpg" alt="">
+          <div class="voucher-mini-gallery">
+            <img src="assets/place.jpg" alt="">
+            <img src="assets/gallery/6.jpg" alt="">
+          </div>
+          <div class="voucher-badge">PRIVATE OFFER · DIRECT10</div>
+        </div>
+        <div class="voucher-copy">
+          <p class="voucher-kicker" data-i18n="modal.kicker">Exclusive Direct Booking</p>
+          <h3 id="modalTitle" data-i18n="modal.h3">Direct booking: −10%</h3>
+          <p class="voucher-sub" data-i18n-html="modal.sub">
             Only here on the official website. Code: <strong>DIRECT10</strong>
           </p>
+          <div class="voucher-form-shell">
+            <div class="ml-embedded" data-form="VklMpT"></div>
+          </div>
+          <div class="voucher-success" id="voucherSuccess" aria-live="polite">
+            <h4 data-i18n="modal.successTitle">Perfect. Your private code is on the way.</h4>
+            <p data-i18n="modal.successText">Please check your inbox now. If needed, also look in Promotions or Spam and move the email to your main inbox.</p>
+          </div>
+          <div class="voucher-actions">
+            <button type="button" class="btn btn-ghost" id="noThanks" data-i18n="modal.noThanks">No thanks</button>
+          </div>
+          <p class="voucher-note" data-i18n="modal.note">No spam. You can unsubscribe anytime.</p>
         </div>
-      </header>
-  <div class="body">
-  <div class="ml-embedded" data-form="VklMpT"></div>
-</div>
-
-  <p id="voucherStatus" style="font-size:13px; margin-top:8px;"></p>
-  <p style="font-size:12px; color:var(--muted);" data-i18n="modal.note">
-    No spam. You can unsubscribe anytime.
-  </p>
-</form>
       </div>
     </div>
   </div>
@@ -1329,10 +1621,10 @@
     const translations = {
       en: {
         meta: {
-          title: "The Jungle Loft – Boutique Hotel in Galle, Sri Lanka",
-          description: "The Jungle Loft – a luxury boutique hotel and calm jungle hideaway in Galle, Sri Lanka. Only 4 rooms: two private villas and two bungalows around a serene pool. Minutes to beaches & Galle Fort.",
-          ogTitle: "The Jungle Loft – Boutique Hotel in Galle, Sri Lanka",
-          ogDescription: "A 4-room luxury boutique hotel in Galle: two villas & two bungalows wrapped in greenery, with a serene jungle pool. Near beaches & Galle Fort.",
+          title: "The Jungle Loft – Boutique Hotel & Luxury Accommodation in Galle, Sri Lanka",
+          description: "Looking for a hotel in Galle, Sri Lanka? The Jungle Loft is a luxury boutique accommodation with 4 private villas and bungalows, a serene jungle pool, and quick access to Galle Fort and beaches.",
+          ogTitle: "The Jungle Loft – Boutique Hotel & Luxury Accommodation in Galle",
+          ogDescription: "Luxury boutique hotel in Galle with only 4 exclusive stays, a jungle pool, and a calm location close to beaches and Galle Fort.",
           ogLocale: "en_US",
           htmlLang: "en"
         },
@@ -1518,13 +1810,16 @@
           btn: "Book now"
         },
         modal: {
+          kicker: "Exclusive Direct Booking",
           h3: "Direct booking: −10%",
-          sub: "Only here on the official website. Code: <strong>DIRECT10</strong>",
+          sub: "Join our private guest list and receive your <strong>10% DIRECT10</strong> welcome voucher by email.",
+          successTitle: "Perfect. Your private code is on the way.",
+          successText: "Please check your inbox now. If needed, also look in Promotions or Spam and move the email to your main inbox.",
           emailLabel: "Email for voucher",
           emailPh: "john@example.com",
           sendBtn: "Send code",
           noThanks: "No thanks",
-          note: "No spam. You can unsubscribe anytime."
+          note: "Short email. Beautiful details. Zero spam."
         },
         video: {
           soundOn: "Sound on",
@@ -1536,10 +1831,10 @@
 
       de: {
         meta: {
-          title: "The Jungle Loft – Luxus-Boutiquehotel in Galle, Sri Lanka",
-          description: "The Jungle Loft – ein luxuriöses Boutiquehotel und ruhiges Dschungel-Hideaway in Galle, Sri Lanka. Nur 4 Zimmer: zwei private Villen und zwei Bungalows an einem stillen Pool. Minuten zu Stränden & dem Galle Fort.",
-          ogTitle: "The Jungle Loft – Luxus-Boutiquehotel in Galle, Sri Lanka",
-          ogDescription: "Ein exklusives Boutiquehotel in Galle mit nur vier Rückzugsorten: zwei Villen & zwei Bungalows in sattem Grün, rund um einen ruhigen Dschungelpool. Nahe Stränden & dem UNESCO-Galle Fort.",
+          title: "The Jungle Loft – Boutiquehotel & Luxus-Unterkunft in Galle, Sri Lanka",
+          description: "Hotel in Galle gesucht? The Jungle Loft ist eine luxuriöse Boutique-Unterkunft mit 4 exklusiven Villen und Bungalows, ruhigem Dschungelpool und kurzer Distanz zu Galle Fort und Stränden.",
+          ogTitle: "The Jungle Loft – Boutiquehotel & Luxus-Unterkunft in Galle",
+          ogDescription: "Exklusives Boutiquehotel in Galle mit nur vier besonderen Rückzugsorten, Dschungelpool und ruhiger Lage nahe Stränden und Galle Fort.",
           ogLocale: "de_DE",
           htmlLang: "de"
         },
@@ -1725,13 +2020,16 @@
           btn: "Jetzt buchen"
         },
         modal: {
+          kicker: "Exklusives Direktangebot",
           h3: "Direktbuchung: −10%",
-          sub: "Nur hier auf der offiziellen Website. Code: <strong>DIRECT10</strong>",
+          sub: "Tragen Sie sich in unsere private Gästeliste ein und erhalten Sie Ihren <strong>10% DIRECT10</strong> Willkommens-Code per E-Mail.",
+          successTitle: "Perfekt. Ihr privater Code ist unterwegs.",
+          successText: "Bitte prüfen Sie jetzt Ihren Posteingang. Falls nötig, auch den Werbe- oder Spam-Ordner.",
           emailLabel: "E-Mail für den Gutschein",
           emailPh: "max@example.com",
           sendBtn: "Code senden",
           noThanks: "Nein, danke",
-          note: "Kein Spam. Abmeldung jederzeit möglich."
+          note: "Kurze E-Mail. Starke Eindrücke. Kein Spam."
         },
         video: {
           soundOn: "Ton an",
@@ -1932,13 +2230,16 @@
           btn: "Забронировать"
         },
         modal: {
+          kicker: "Эксклюзивное прямое предложение",
           h3: "Прямое бронирование: −10%",
-          sub: "Только на официальном сайте. Код: <strong>DIRECT10</strong>",
+          sub: "Вступите в наш приватный список гостей и получите <strong>10% DIRECT10</strong> приветственный код на e-mail.",
+          successTitle: "Отлично. Ваш персональный код уже отправлен.",
+          successText: "Проверьте входящие. При необходимости откройте вкладку Promotions или папку Spam.",
           emailLabel: "E-mail для ваучера",
           emailPh: "ivan@example.com",
           sendBtn: "Отправить код",
           noThanks: "Нет, спасибо",
-          note: "Без спама. Отписаться можно в любой момент."
+          note: "Короткое письмо. Красивые детали. Без спама."
         },
         video: {
           soundOn: "Звук вкл.",
@@ -2009,7 +2310,7 @@
     // -----------------------------
     const map = L.map('map', { scrollWheelZoom: false });
     const coords = [6.035811150545621, 80.25820113867027];
-    const googleMapsUrl = `https://www.google.com/maps?q=${coords[0]},${coords[1]}`;
+    const googleMapsUrl = 'https://share.google/IypPoJ95KgBhtnLpE';
     map.setView(coords, 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -2102,30 +2403,64 @@
     // Modal logic
     // -----------------------------
     const backdrop = document.getElementById('modalBackdrop');
+    const modalCopy = document.querySelector('.voucher-copy');
+    const voucherSuccess = document.getElementById('voucherSuccess');
     const openBtn = document.getElementById('openModal');
     const closeBtn = document.getElementById('closeModal');
     const noThanks = document.getElementById('noThanks');
+    const mlEmbed = document.querySelector('.ml-embedded');
     function openModal(){
-  backdrop.style.display = 'flex';
-
-  // Reveal-Elemente im Modal sofort sichtbar machen
-  backdrop.querySelectorAll('.reveal').forEach(el=>{
-    el.classList.add('visible');
-  });
-}
-    function closeModal(){ backdrop.style.display = 'none'; localStorage.setItem('popupDismissed', Date.now().toString()); }
+      if (!backdrop) return;
+      backdrop.style.display = 'flex';
+      document.body.classList.add('modal-open');
+    }
+    function closeModal(){
+      if (!backdrop) return;
+      backdrop.style.display = 'none';
+      document.body.classList.remove('modal-open');
+      modalCopy?.classList.remove('is-success');
+      voucherSuccess?.classList.remove('show');
+      localStorage.setItem('popupDismissed', Date.now().toString());
+    }
     openBtn?.addEventListener('click', (e)=>{ e.preventDefault(); openModal(); });
     closeBtn?.addEventListener('click', closeModal);
     noThanks?.addEventListener('click', closeModal);
     backdrop?.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
+
+    if (mlEmbed) {
+      const onMlSuccess = () => {
+        localStorage.setItem('voucherSubscribedAt', Date.now().toString());
+        localStorage.setItem('popupDismissed', Date.now().toString());
+        modalCopy?.classList.add('is-success');
+        voucherSuccess?.classList.add('show');
+        setTimeout(() => {
+          if (backdrop?.style.display === 'flex') closeModal();
+        }, 4500);
+      };
+
+      const mlObserver = new MutationObserver(() => {
+        const successNode =
+          mlEmbed.querySelector('.ml-form-successBody') ||
+          mlEmbed.querySelector('.ml-form-success');
+        if (successNode && successNode.textContent.trim().length > 0) {
+          onMlSuccess();
+        }
+      });
+      mlObserver.observe(mlEmbed, { childList: true, subtree: true, attributes: true });
+    }
+
     const lastDismiss = parseInt(localStorage.getItem('popupDismissed') || '0', 10);
+    const subscribedAt = parseInt(localStorage.getItem('voucherSubscribedAt') || '0', 10);
     const day = 24 * 60 * 60 * 1000;
-    if (!lastDismiss || (Date.now() - lastDismiss) > day) {
+    const dismissedLongEnough = !lastDismiss || (Date.now() - lastDismiss) > (3 * day);
+    const notRecentlySubscribed = !subscribedAt || (Date.now() - subscribedAt) > (180 * day);
+
+    if (dismissedLongEnough && notRecentlySubscribed) {
       setTimeout(openModal, 7000);
     }
     let exitShown = false;
     document.addEventListener('mouseleave', (e)=>{
-      if (e.clientY <= 0 && !exitShown && (!lastDismiss || (Date.now() - lastDismiss) > day)) {
+      if (e.clientY <= 0 && !exitShown && dismissedLongEnough && notRecentlySubscribed) {
         exitShown = true; openModal();
       }
     });
@@ -2359,6 +2694,7 @@
     "@type": "Hotel",
     "name": "The Jungle Loft",
     "image": ["https://thejungleloftgalle.com/assets/og-image.jpg"],
+    "description": "Luxury boutique hotel and accommodation in Galle, Sri Lanka with four exclusive stays, a jungle pool, and easy access to Galle Fort and beaches.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Wattagewatta, Kaduruduwa, Wanchawala",
@@ -2375,6 +2711,7 @@
       "latitude": 6.035811150545621,
       "longitude": 80.25820113867027
     },
+    "hasMap": "https://share.google/IypPoJ95KgBhtnLpE",
     "amenityFeature": [
       { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Breakfast", "value": true },
@@ -2386,7 +2723,7 @@
     "availableLanguage": ["en","de","ru"],
     "sameAs": [
       "https://www.tripadvisor.com/Hotel_Review-g17464471-d17620254-Reviews-The_Jungle_Loft_Galle-Wanchawala_Galle_District_Southern_Province.html",
-      "https://www.google.com/search?sca_esv=4fc95be2d6bdf9cb&hl=de-DE&gl=de&q=The+Jungle+Loft+-+Galle,+Wattagewatta+Wanchawala,+80125,+Sri+Lanka",
+      "https://share.google/IypPoJ95KgBhtnLpE",
       "https://www.instagram.com/thejungleloft_galle/"
     ]
   }
