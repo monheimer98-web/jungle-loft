@@ -42,24 +42,13 @@
   <meta name="twitter:image" content="https://thejungleloftgalle.com/assets/og-image.jpg" />
   <meta name="twitter:image:alt" content="The Jungle Loft Galle – boutique hotel with tropical pool and greenery" />
 
-  <!-- GA4: replace this once with your real Measurement ID -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQZJQR4DXM"></script>
   <script>
-    window.GA_MEASUREMENT_ID = "G-WQZJQR4DXM";
-  </script>
-  <script>
-    (function() {
-      var gaId = window.GA_MEASUREMENT_ID;
-      if (!gaId || !/^G-[A-Z0-9]+$/i.test(gaId)) return;
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
-      document.head.appendChild(s);
-
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function(){ dataLayer.push(arguments); };
-      gtag('js', new Date());
-      gtag('config', gaId);
-    })();
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WQZJQR4DXM');
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
