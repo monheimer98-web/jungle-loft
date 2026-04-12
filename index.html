@@ -43,7 +43,7 @@
   <meta name="twitter:image" content="https://thejungleloftgalle.com/assets/og-image.jpg" />
   <meta name="twitter:image:alt" content="The Jungle Loft Galle – boutique hotel with tropical pool and greenery" />
 
-  <!-- Optional secure voucher endpoint (e.g. Cloudflare Worker + Resend) -->
+  <!-- Voucher webhook (Zapier) -->
   <script>
     window.VOUCHER_API_ENDPOINT = 'https://hooks.zapier.com/hooks/catch/27192176/u7eu9el/';
   </script>
@@ -2439,9 +2439,7 @@
     const voucherEmail = document.getElementById('voucherEmail');
     const voucherSubmit = document.getElementById('voucherSubmit');
     const voucherFormStatus = document.getElementById('voucherFormStatus');
-    // Preferred: secure backend endpoint (e.g. Cloudflare Worker with Resend)
-    // Fallback keeps current flow active until backend is live.
-    const VOUCHER_FORM_ENDPOINT = window.VOUCHER_API_ENDPOINT || 'https://formsubmit.co/ajax/jungleloftgalle@gmail.com';
+    const VOUCHER_FORM_ENDPOINT = window.VOUCHER_API_ENDPOINT || '';
 
     function voucherText(key, fallback){
       return translations[getCurrentLang()]?.modal?.[key] || fallback;
@@ -2480,6 +2478,46 @@
     noThanks?.addEventListener('click', closeModal);
     backdrop?.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
 
+    async function sendVoucherToZapier(email){
+      const payload = {
+        email,
+        lang: getCurrentLang(),
+        voucherCode: 'DIRECT10',
+        source: 'website_voucher_popup'
+      };
+
+      // 1) Try beacon first (best for page lifecycle and tracking-safe POST).
+      if (navigator.sendBeacon) {
+        try {
+          const body = new URLSearchParams(payload).toString();
+          const blob = new Blob([body], { type: 'application/x-www-form-urlencoded;charset=UTF-8' });
+          const sent = navigator.sendBeacon(VOUCHER_FORM_ENDPOINT, blob);
+          if (sent) return true;
+        } catch (_) {}
+      }
+
+      // 2) Try no-cors POST as transport fallback.
+      try {
+        await fetch(VOUCHER_FORM_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: new URLSearchParams(payload).toString()
+        });
+        return true;
+      } catch (_) {}
+
+      // 3) Last resort: GET pixel style trigger with query params.
+      await new Promise((resolve, reject) => {
+        const img = new Image();
+        const timeout = setTimeout(() => reject(new Error('zapier_timeout')), 7000);
+        img.onload = () => { clearTimeout(timeout); resolve(true); };
+        img.onerror = () => { clearTimeout(timeout); reject(new Error('zapier_pixel_failed')); };
+        img.src = `${VOUCHER_FORM_ENDPOINT}?${new URLSearchParams(payload).toString()}&t=${Date.now()}`;
+      });
+      return true;
+    }
+
     voucherForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = (voucherEmail?.value || '').trim();
@@ -2489,67 +2527,16 @@
         return;
       }
 
+      if (!VOUCHER_FORM_ENDPOINT) {
+        setVoucherStatus('Voucher system is not configured yet. Please contact us via WhatsApp.', 'error');
+        return;
+      }
+
       voucherSubmit.disabled = true;
       setVoucherStatus(voucherText('sending', 'Sending your private code...'));
 
       try {
-        let res;
-        const usingFormSubmit = /formsubmit\.co/i.test(VOUCHER_FORM_ENDPOINT);
-        const usingZapierHook = /hooks\.zapier\.com\/hooks\/catch\//i.test(VOUCHER_FORM_ENDPOINT);
-
-        if (usingFormSubmit) {
-          const payload = new FormData(voucherForm);
-          payload.append('name', 'Jungle Loft Guest');
-          payload.append('source', 'website_voucher_popup');
-          payload.append('message', 'Voucher signup request for DIRECT10');
-          payload.append('_replyto', email);
-          payload.append('_subject', 'New DIRECT10 voucher signup');
-          payload.append('_captcha', 'false');
-          payload.append('_template', 'table');
-          payload.append('_autoresponse', 'Hi and thank you for your interest in The Jungle Loft.\\n\\nWe are delighted to welcome you to our small luxury jungle hideaway in Galle, with only four private stays, a serene tropical pool, and highly personal service.\\n\\nYour private direct-booking voucher code is: DIRECT10\\n\\nUse this code when booking directly with us to enjoy your exclusive 10% welcome offer.\\n\\nWarm regards,\\nThe Jungle Loft Team\\nGalle, Sri Lanka');
-          res = await fetch(VOUCHER_FORM_ENDPOINT, {
-            method: 'POST',
-            body: payload,
-            headers: { 'Accept': 'application/json' }
-          });
-        } else if (usingZapierHook) {
-          const zapPayload = {
-            email,
-            lang: getCurrentLang(),
-            voucherCode: 'DIRECT10',
-            source: 'website_voucher_popup'
-          };
-          let sent = false;
-          if (navigator.sendBeacon) {
-            const blob = new Blob([JSON.stringify(zapPayload)], { type: 'application/json' });
-            sent = navigator.sendBeacon(VOUCHER_FORM_ENDPOINT, blob);
-          }
-          if (!sent) {
-            await fetch(VOUCHER_FORM_ENDPOINT, {
-              method: 'POST',
-              mode: 'no-cors',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(zapPayload)
-            });
-          }
-          // no-cors/sendBeacon don't provide reliable response codes; treat transport success as accepted
-          res = { ok: true };
-        } else {
-          res = await fetch(VOUCHER_FORM_ENDPOINT, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              email,
-              lang: getCurrentLang(),
-              voucherCode: 'DIRECT10',
-              source: 'website_voucher_popup'
-            })
-          });
-        }
-        if (!res.ok) throw new Error('submit_failed');
+        await sendVoucherToZapier(email);
 
         voucherForm.reset();
         setVoucherStatus(voucherText('successInline', 'Perfect. Your voucher email is on the way.'), 'ok');

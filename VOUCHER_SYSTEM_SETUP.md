@@ -4,7 +4,7 @@ This project now supports a professional voucher mail flow with custom popup + b
 
 ## Current behavior
 - Website popup is fully custom (no MailerLite).
-- Frontend currently uses fallback endpoint (`formsubmit.co`) unless you set a secure API endpoint.
+- Frontend is configured to post voucher signups to your Zapier webhook endpoint.
 - Ready-to-deploy Resend Worker file exists at:
   - `workers/resend-voucher-worker.js`
 
