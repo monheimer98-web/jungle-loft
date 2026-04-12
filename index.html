@@ -479,6 +479,10 @@
     }
     .section-title { font-size: 30px; margin: 0 0 18px; }
     .section-sub { color: var(--muted); margin: 0 0 28px; }
+    #rooms, #dining, #experiences, #gallery, #faq, #galle-guides {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 900px;
+    }
 
     /* Two-column text */
     .two-col { display:grid; gap:22px; grid-template-columns: 1fr; }
@@ -1047,7 +1051,8 @@
     <div class="hero-video">
       <div class="hero-fallback" id="heroFallback"></div>
 
-      <video id="heroVideo" autoplay muted playsinline preload="metadata" poster="assets/hero-poster-opt.jpg">
+      <video id="heroVideo" autoplay muted playsinline preload="none" poster="assets/hero-poster-opt.jpg">
+        <source src="assets/hero-opt.mp4" type="video/mp4" />
         <source src="assets/hero.mp4" type="video/mp4" />
       </video>
 
@@ -1614,10 +1619,10 @@
       <button type="button" class="close-x" id="closeModal" aria-label="Close pop-up">×</button>
       <div class="voucher-layout">
         <div class="voucher-visual" aria-hidden="true">
-          <img src="assets/offer.jpg" alt="">
+          <img src="assets/offer-popup.jpg" alt="">
           <div class="voucher-mini-gallery">
-            <img src="assets/place.jpg" alt="">
-            <img src="assets/gallery/6.jpg" alt="">
+            <img src="assets/place-popup.jpg" alt="">
+            <img src="assets/gallery/6-popup.jpg" alt="">
           </div>
           <div class="voucher-badge">PRIVATE OFFER · 10% DIRECT BOOKING</div>
         </div>
