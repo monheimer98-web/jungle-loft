@@ -254,7 +254,7 @@
     .hero-fallback {
       position:absolute;
       inset:0;
-      background: url('assets/hero-poster.jpg') center/cover no-repeat;
+      background: url('assets/hero-poster-opt.jpg') center/cover no-repeat;
       display:none;
     }
 
@@ -1047,8 +1047,7 @@
     <div class="hero-video">
       <div class="hero-fallback" id="heroFallback"></div>
 
-      <video id="heroVideo" autoplay muted playsinline poster="assets/hero-poster.jpg">
-        <source src="assets/hero.webm" type="video/webm" />
+      <video id="heroVideo" autoplay muted playsinline preload="metadata" poster="assets/hero-poster-opt.jpg">
         <source src="assets/hero.mp4" type="video/mp4" />
       </video>
 
@@ -1342,18 +1341,18 @@
       <h2 class="section-title reveal" data-i18n="gallery.h2">Gallery</h2>
       <p class="section-sub reveal" data-i18n="gallery.sub">A look at the villas, bungalows, pool and the garden.</p>
       <div class="gallery">
-        <a href="#" data-full="assets/gallery/1.jpg" class="reveal"><img src="assets/gallery/1.jpg" alt="Sunset over paddy fields and jungle canopy"></a>
-        <a href="#" data-full="assets/gallery/2.jpg" class="reveal"><img src="assets/gallery/2.jpg" alt="Jungle pool under palms – daytime"></a>
-        <a href="#" data-full="assets/gallery/3.jpg" class="reveal"><img src="assets/gallery/3.jpg" alt="Open veranda with bench and tropical plants"></a>
-        <a href="#" data-full="assets/gallery/4.jpg" class="reveal"><img src="assets/gallery/4.jpg" alt="Veranda with green door and garden view"></a>
-        <a href="#" data-full="assets/gallery/5.jpg" class="reveal"><img src="assets/gallery/5.jpg" alt="Fresh coconuts by the pool"></a>
-        <a href="#" data-full="assets/gallery/6.jpg" class="reveal"><img src="assets/gallery/6.jpg" alt="Pool at dusk with loungers"></a>
-        <a href="#" data-full="assets/gallery/7.jpg" class="reveal"><img src="assets/gallery/7.jpg" alt="Asian water monitor in the garden"></a>
-        <a href="#" data-full="assets/gallery/8.jpg" class="reveal"><img src="assets/gallery/8.jpg" alt="Welcome drink tray with frangipani by the pool"></a>
-        <a href="#" data-full="assets/gallery/9.jpg" class="reveal"><img src="assets/gallery/9.jpg" alt="Monkeys resting in the trees"></a>
-        <a href="#" data-full="assets/gallery/10.jpg" class="reveal"><img src="assets/gallery/10.jpg" alt="Tropical breakfast spread with coconuts and fruit"></a>
-        <a href="#" data-full="assets/gallery/11.jpg" class="reveal"><img src="assets/gallery/11.jpg" alt="Whole property"></a>
-        <a href="#" data-full="assets/gallery/12.jpg" class="reveal"><img src="assets/gallery/12.jpg" alt="Monkey looking straight forward"></a>
+        <a href="#" data-full="assets/gallery/1.jpg" class="reveal"><img src="assets/gallery/1.jpg" alt="Sunset over paddy fields and jungle canopy" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/2.jpg" class="reveal"><img src="assets/gallery/2.jpg" alt="Jungle pool under palms – daytime" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/3.jpg" class="reveal"><img src="assets/gallery/3.jpg" alt="Open veranda with bench and tropical plants" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/4.jpg" class="reveal"><img src="assets/gallery/4.jpg" alt="Veranda with green door and garden view" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/5.jpg" class="reveal"><img src="assets/gallery/5.jpg" alt="Fresh coconuts by the pool" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/6.jpg" class="reveal"><img src="assets/gallery/6.jpg" alt="Pool at dusk with loungers" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/7.jpg" class="reveal"><img src="assets/gallery/7.jpg" alt="Asian water monitor in the garden" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/8.jpg" class="reveal"><img src="assets/gallery/8.jpg" alt="Welcome drink tray with frangipani by the pool" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/9.jpg" class="reveal"><img src="assets/gallery/9.jpg" alt="Monkeys resting in the trees" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/10.jpg" class="reveal"><img src="assets/gallery/10.jpg" alt="Tropical breakfast spread with coconuts and fruit" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/11.jpg" class="reveal"><img src="assets/gallery/11.jpg" alt="Whole property" loading="lazy" decoding="async"></a>
+        <a href="#" data-full="assets/gallery/12.jpg" class="reveal"><img src="assets/gallery/12.jpg" alt="Monkey looking straight forward" loading="lazy" decoding="async"></a>
       </div>
     </div>
   </section>
@@ -1514,7 +1513,7 @@
       <p class="section-sub">Explore dedicated pages for guests searching hotels and accommodation in Galle.</p>
       <div class="grid grid-4">
         <article class="card">
-          <img src="assets/place.jpg" alt="Hotel in Galle guide page">
+          <img src="assets/place.jpg" alt="Hotel in Galle guide page" loading="lazy" decoding="async">
           <div class="content">
             <h3 style="margin:0;">Hotel in Galle</h3>
             <p>Find out why The Jungle Loft is a leading choice for travelers looking for a hotel in Galle.</p>
@@ -1522,7 +1521,7 @@
           </div>
         </article>
         <article class="card">
-          <img src="assets/rooms/peacock/cover.jpg" alt="Boutique hotel in Galle guide page">
+          <img src="assets/rooms/peacock/cover.jpg" alt="Boutique hotel in Galle guide page" loading="lazy" decoding="async">
           <div class="content">
             <h3 style="margin:0;">Boutique Hotel Galle</h3>
             <p>See what makes a true boutique hotel experience in Galle and how we deliver it.</p>
@@ -1530,7 +1529,7 @@
           </div>
         </article>
         <article class="card">
-          <img src="assets/rooms/monkey/cover.jpg" alt="Luxury accommodation in Galle guide page">
+          <img src="assets/rooms/monkey/cover.jpg" alt="Luxury accommodation in Galle guide page" loading="lazy" decoding="async">
           <div class="content">
             <h3 style="margin:0;">Luxury Accommodation Galle</h3>
             <p>Discover private high-end accommodation in Galle for couples and restful escapes.</p>
@@ -1538,7 +1537,7 @@
           </div>
         </article>
         <article class="card">
-          <img src="assets/gallery/6.jpg" alt="Google Maps profile of The Jungle Loft">
+          <img src="assets/gallery/6.jpg" alt="Google Maps profile of The Jungle Loft" loading="lazy" decoding="async">
           <div class="content">
             <h3 style="margin:0;">Google Maps Profile</h3>
             <p>Open our verified Google Maps listing for location, reviews, and direct directions.</p>
@@ -1615,10 +1614,10 @@
       <button type="button" class="close-x" id="closeModal" aria-label="Close pop-up">×</button>
       <div class="voucher-layout">
         <div class="voucher-visual" aria-hidden="true">
-          <img src="assets/offer.jpg" alt="">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="assets/offer.jpg" alt="">
           <div class="voucher-mini-gallery">
-            <img src="assets/place.jpg" alt="">
-            <img src="assets/gallery/6.jpg" alt="">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="assets/place.jpg" alt="">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="assets/gallery/6.jpg" alt="">
           </div>
           <div class="voucher-badge">PRIVATE OFFER · 10% DIRECT BOOKING</div>
         </div>
@@ -2497,9 +2496,17 @@
         if (backdrop?.style.display === 'flex') closeModal();
       }, 4800);
     }
+    function loadVoucherMedia(){
+      document.querySelectorAll('#modalBackdrop [data-src]').forEach((img)=>{
+        if (!img.getAttribute('src') || img.getAttribute('src').startsWith('data:image/gif')) {
+          img.setAttribute('src', img.getAttribute('data-src'));
+        }
+      });
+    }
 
     function openModal(){
       if (!backdrop) return;
+      loadVoucherMedia();
       backdrop.style.display = 'flex';
       document.body.classList.add('modal-open');
     }
