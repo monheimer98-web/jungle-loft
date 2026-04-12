@@ -1,9 +1,16 @@
 export default {
   async fetch(request, env) {
+    const requestOrigin = request.headers.get('Origin') || '';
+    const allowedOrigins = new Set([
+      'https://thejungleloftgalle.com',
+      'https://www.thejungleloftgalle.com'
+    ]);
+    const corsOrigin = allowedOrigins.has(requestOrigin) ? requestOrigin : 'https://thejungleloftgalle.com';
     const corsHeaders = {
-      'Access-Control-Allow-Origin': 'https://thejungleloftgalle.com',
+      'Access-Control-Allow-Origin': corsOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Vary': 'Origin'
     };
 
     if (request.method === 'OPTIONS') {
