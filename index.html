@@ -2507,13 +2507,36 @@
         return true;
       } catch (_) {}
 
-      // 3) Last resort: GET pixel style trigger with query params.
-      await new Promise((resolve, reject) => {
-        const img = new Image();
-        const timeout = setTimeout(() => reject(new Error('zapier_timeout')), 7000);
-        img.onload = () => { clearTimeout(timeout); resolve(true); };
-        img.onerror = () => { clearTimeout(timeout); reject(new Error('zapier_pixel_failed')); };
-        img.src = `${VOUCHER_FORM_ENDPOINT}?${new URLSearchParams(payload).toString()}&t=${Date.now()}`;
+      // 3) Last resort: submit a hidden HTML form.
+      await new Promise((resolve) => {
+        const iframeName = `voucherSink_${Date.now()}`;
+        const sink = document.createElement('iframe');
+        sink.name = iframeName;
+        sink.style.display = 'none';
+        document.body.appendChild(sink);
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = VOUCHER_FORM_ENDPOINT;
+        form.target = iframeName;
+        form.style.display = 'none';
+
+        Object.entries(payload).forEach(([k, v]) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = k;
+          input.value = String(v);
+          form.appendChild(input);
+        });
+
+        document.body.appendChild(form);
+        try { form.submit(); } catch (_) {}
+
+        setTimeout(() => {
+          try { form.remove(); } catch (_) {}
+          try { sink.remove(); } catch (_) {}
+          resolve(true);
+        }, 450);
       });
       return true;
     }
