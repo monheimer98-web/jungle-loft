@@ -46,6 +46,7 @@
   <!-- Voucher webhook (Zapier) -->
   <script>
     window.VOUCHER_API_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx4A6BPXSs4iZjC5RR_-QSYigM1L6sLbqC9o0qLXL4Meu8oG2yWkUSK8paWM_sVVhFZ/exec';
+    window.VOUCHER_API_TOKEN = 'jl_voucher_2026_4Nf7Qp2LmX';
   </script>
 
   <!-- Google tag (gtag.js) -->
@@ -2483,7 +2484,8 @@
         email,
         lang: getCurrentLang(),
         voucherCode: 'DIRECT10',
-        source: 'website_voucher_popup'
+        source: 'website_voucher_popup',
+        token: window.VOUCHER_API_TOKEN || ''
       };
 
       // 1) Try beacon first (best for page lifecycle and tracking-safe POST).
