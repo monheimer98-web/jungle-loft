@@ -823,7 +823,7 @@
       border: 1px solid rgba(201,176,138,.9);
       border-radius: 999px;
       padding: 8px 14px;
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: .1em;
       font-weight: 800;
     }
@@ -900,37 +900,9 @@
     }
     .voucher-success p {
       margin: 0;
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 15px;
+      line-height: 1.65;
       color: #385747;
-    }
-    .voucher-success-code {
-      margin-top: 12px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .voucher-success-pill {
-      display: inline-block;
-      border-radius: 999px;
-      border: 1px solid rgba(14,79,51,.22);
-      padding: 8px 14px;
-      letter-spacing: .08em;
-      font-size: 13px;
-      font-weight: 800;
-      color: #0e4f33;
-      background: #fff;
-    }
-    .voucher-copy-code {
-      border: 1px solid #d0ddcf;
-      background: #fff;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #294c3a;
-      cursor: pointer;
     }
     .voucher-actions {
       display: flex;
@@ -1619,12 +1591,12 @@
       <button type="button" class="close-x" id="closeModal" aria-label="Close pop-up">×</button>
       <div class="voucher-layout">
         <div class="voucher-visual" aria-hidden="true">
-          <img src="assets/offer-popup.jpg" alt="">
+          <img src="assets/popup-hero-day.jpg" alt="">
           <div class="voucher-mini-gallery">
             <img src="assets/place-popup.jpg" alt="">
-            <img src="assets/gallery/6-popup.jpg" alt="">
+            <img src="assets/gallery/1.jpg" alt="">
           </div>
-          <div class="voucher-badge">PRIVATE OFFER · 10% DIRECT BOOKING</div>
+          <div class="voucher-badge">PRIVATE GUEST OFFER · LIMITED</div>
         </div>
         <div class="voucher-copy">
           <p class="voucher-kicker" data-i18n="modal.kicker">Exclusive Direct Booking</p>
@@ -1643,12 +1615,8 @@
             </form>
           </div>
           <div class="voucher-success" id="voucherSuccess" aria-live="polite">
-            <h4 data-i18n="modal.successTitle">Perfect. Your private code is on the way.</h4>
-            <p data-i18n="modal.successText">Please check your inbox now. If needed, also look in Promotions or Spam and move the email to your main inbox.</p>
-            <div class="voucher-success-code">
-              <span class="voucher-success-pill">DIRECT10</span>
-              <button type="button" class="voucher-copy-code" id="voucherCopyCode" data-i18n="modal.copyBtn">Copy code</button>
-            </div>
+            <h4 data-i18n="modal.successTitle">Perfect. Your private offer has been sent.</h4>
+            <p data-i18n="modal.successText">Please check your inbox now. Your welcome voucher details are in your email from The Jungle Loft.</p>
           </div>
           <div class="voucher-actions">
             <button type="button" class="btn btn-ghost" id="noThanks" data-i18n="modal.noThanks">No thanks</button>
@@ -1860,8 +1828,8 @@
           kicker: "Exclusive Direct Booking",
           h3: "Direct booking: −10%",
           sub: "Join our private guest list and receive your 10% welcome offer by email.",
-          successTitle: "Perfect. Your private code is on the way.",
-          successText: "Please check your inbox now. If needed, also look in Promotions or Spam and move the email to your main inbox.",
+          successTitle: "Perfect. Your private offer has been sent.",
+          successText: "Please check your inbox now. Your welcome voucher details are in your email from The Jungle Loft.",
           successInline: "Perfect. Your voucher email is on the way.",
           sending: "Sending your private code...",
           invalidEmail: "Please enter a valid email address.",
@@ -1869,8 +1837,6 @@
           emailLabel: "Email for voucher",
           emailPh: "john@example.com",
           sendBtn: "Send code",
-          copyBtn: "Copy code",
-          copied: "Copied",
           noThanks: "No thanks",
           note: "Short email. Beautiful details. Zero spam."
         },
@@ -2076,8 +2042,8 @@
           kicker: "Exklusives Direktangebot",
           h3: "Direktbuchung: −10%",
           sub: "Tragen Sie sich in unsere private Gästeliste ein und erhalten Sie Ihr 10%-Willkommensangebot per E-Mail.",
-          successTitle: "Perfekt. Ihr privater Code ist unterwegs.",
-          successText: "Bitte prüfen Sie jetzt Ihren Posteingang. Falls nötig, auch den Werbe- oder Spam-Ordner.",
+          successTitle: "Perfekt. Ihr privates Angebot wurde versendet.",
+          successText: "Bitte prüfen Sie jetzt Ihren Posteingang. Die Voucher-Details stehen in Ihrer E-Mail von The Jungle Loft.",
           successInline: "Perfekt. Ihre Gutschein-Mail ist unterwegs.",
           sending: "Ihr privater Code wird gesendet...",
           invalidEmail: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
@@ -2085,8 +2051,6 @@
           emailLabel: "E-Mail für den Gutschein",
           emailPh: "max@example.com",
           sendBtn: "Code senden",
-          copyBtn: "Code kopieren",
-          copied: "Kopiert",
           noThanks: "Nein, danke",
           note: "Kurze E-Mail. Starke Eindrücke. Kein Spam."
         },
@@ -2292,8 +2256,8 @@
           kicker: "Эксклюзивное прямое предложение",
           h3: "Прямое бронирование: −10%",
           sub: "Вступите в наш приватный список гостей и получите приветственное предложение 10% на e-mail.",
-          successTitle: "Отлично. Ваш персональный код уже отправлен.",
-          successText: "Проверьте входящие. При необходимости откройте вкладку Promotions или папку Spam.",
+          successTitle: "Отлично. Ваше персональное предложение отправлено.",
+          successText: "Проверьте входящие. Детали ваучера уже отправлены вам письмом от The Jungle Loft.",
           successInline: "Отлично. Письмо с ваучером уже отправлено.",
           sending: "Отправляем ваш приватный код...",
           invalidEmail: "Пожалуйста, введите корректный e-mail.",
@@ -2301,8 +2265,6 @@
           emailLabel: "E-mail для ваучера",
           emailPh: "ivan@example.com",
           sendBtn: "Отправить код",
-          copyBtn: "Скопировать код",
-          copied: "Скопировано",
           noThanks: "Нет, спасибо",
           note: "Короткое письмо. Красивые детали. Без спама."
         },
@@ -2477,7 +2439,6 @@
     const voucherEmail = document.getElementById('voucherEmail');
     const voucherSubmit = document.getElementById('voucherSubmit');
     const voucherFormStatus = document.getElementById('voucherFormStatus');
-    const voucherCopyCode = document.getElementById('voucherCopyCode');
     // Preferred: secure backend endpoint (e.g. Cloudflare Worker with Resend)
     // Fallback keeps current flow active until backend is live.
     const VOUCHER_FORM_ENDPOINT = window.VOUCHER_API_ENDPOINT || 'https://formsubmit.co/ajax/jungleloftgalle@gmail.com';
@@ -2574,16 +2535,6 @@
         setVoucherStatus(voucherText('error', 'Something went wrong. Please try again or contact us via WhatsApp.'), 'error');
       } finally {
         voucherSubmit.disabled = false;
-      }
-    });
-
-    voucherCopyCode?.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('DIRECT10');
-        voucherCopyCode.textContent = voucherText('copied', 'Copied');
-        setTimeout(() => { voucherCopyCode.textContent = voucherText('copyBtn', 'Copy code'); }, 1700);
-      } catch (_) {
-        voucherCopyCode.textContent = 'DIRECT10';
       }
     });
 
