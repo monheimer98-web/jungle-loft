@@ -1614,10 +1614,10 @@
       <button type="button" class="close-x" id="closeModal" aria-label="Close pop-up">×</button>
       <div class="voucher-layout">
         <div class="voucher-visual" aria-hidden="true">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="assets/offer.jpg" alt="">
+          <img src="assets/offer.jpg" alt="">
           <div class="voucher-mini-gallery">
-            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="assets/place.jpg" alt="">
-            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="assets/gallery/6.jpg" alt="">
+            <img src="assets/place.jpg" alt="">
+            <img src="assets/gallery/6.jpg" alt="">
           </div>
           <div class="voucher-badge">PRIVATE OFFER · 10% DIRECT BOOKING</div>
         </div>
@@ -2496,17 +2496,8 @@
         if (backdrop?.style.display === 'flex') closeModal();
       }, 4800);
     }
-    function loadVoucherMedia(){
-      document.querySelectorAll('#modalBackdrop [data-src]').forEach((img)=>{
-        if (!img.getAttribute('src') || img.getAttribute('src').startsWith('data:image/gif')) {
-          img.setAttribute('src', img.getAttribute('data-src'));
-        }
-      });
-    }
-
     function openModal(){
       if (!backdrop) return;
-      loadVoucherMedia();
       backdrop.style.display = 'flex';
       document.body.classList.add('modal-open');
     }
