@@ -2495,6 +2495,7 @@
       try {
         let res;
         const usingFormSubmit = /formsubmit\.co/i.test(VOUCHER_FORM_ENDPOINT);
+        const usingZapierHook = /hooks\.zapier\.com\/hooks\/catch\//i.test(VOUCHER_FORM_ENDPOINT);
 
         if (usingFormSubmit) {
           const payload = new FormData(voucherForm);
@@ -2511,6 +2512,28 @@
             body: payload,
             headers: { 'Accept': 'application/json' }
           });
+        } else if (usingZapierHook) {
+          const zapPayload = {
+            email,
+            lang: getCurrentLang(),
+            voucherCode: 'DIRECT10',
+            source: 'website_voucher_popup'
+          };
+          let sent = false;
+          if (navigator.sendBeacon) {
+            const blob = new Blob([JSON.stringify(zapPayload)], { type: 'application/json' });
+            sent = navigator.sendBeacon(VOUCHER_FORM_ENDPOINT, blob);
+          }
+          if (!sent) {
+            await fetch(VOUCHER_FORM_ENDPOINT, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(zapPayload)
+            });
+          }
+          // no-cors/sendBeacon don't provide reliable response codes; treat transport success as accepted
+          res = { ok: true };
         } else {
           res = await fetch(VOUCHER_FORM_ENDPOINT, {
             method: 'POST',
