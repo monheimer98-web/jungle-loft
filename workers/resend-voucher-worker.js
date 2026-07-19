@@ -35,10 +35,10 @@ export default {
 
       const code = voucherCode || 'DIRECT10';
       const subject = lang === 'de'
-        ? 'Ihr privater 10% Welcome Code für The Jungle Loft'
+        ? 'Ihr privater 10-USD-Welcome-Code für The Jungle Loft'
         : lang === 'ru'
-        ? 'Ваш персональный код 10% для The Jungle Loft'
-        : 'Your private 10% code for The Jungle Loft';
+        ? 'Ваш персональный код на 10 USD для The Jungle Loft'
+        : 'Your private 10 USD code for The Jungle Loft';
 
       const text = `Hi and thank you for your interest in The Jungle Loft.\n\nYour private direct-booking voucher code is: ${code}\n\nWarm regards,\nThe Jungle Loft Team\nGalle, Sri Lanka`;
 
@@ -134,7 +134,7 @@ function buildVoucherHtml({ code, lang }) {
 function getCopy(lang, code) {
   if (lang === 'de') {
     return {
-      title: 'Ihr 10% Welcome-Voucher',
+      title: 'Ihr 10-USD-Welcome-Voucher',
       intro: 'Vielen Dank für Ihr Interesse am The Jungle Loft. Wir freuen uns sehr, Sie in unserem kleinen Luxury Hideaway in Galle willkommen zu heißen.',
       body: `Ihr privater Direktbuchungs-Code lautet: <strong>${code}</strong>. Nutzen Sie ihn für Ihre direkte Buchung über unsere Website.`,
       cta: 'Verfügbarkeit prüfen',
@@ -143,7 +143,7 @@ function getCopy(lang, code) {
   }
   if (lang === 'ru') {
     return {
-      title: 'Ваш приветственный ваучер 10%',
+      title: 'Ваш приветственный ваучер на 10 USD',
       intro: 'Спасибо за интерес к The Jungle Loft. Будем рады приветствовать вас в нашем камерном luxury-отеле в Галле.',
       body: `Ваш персональный код для прямого бронирования: <strong>${code}</strong>. Используйте его при бронировании через наш официальный сайт.`,
       cta: 'Проверить наличие',
@@ -151,7 +151,7 @@ function getCopy(lang, code) {
     };
   }
   return {
-    title: 'Your 10% Welcome Voucher',
+    title: 'Your 10 USD Welcome Voucher',
     intro: 'Thank you for your interest in The Jungle Loft. We would be delighted to host you in our intimate luxury jungle retreat in Galle.',
     body: `Your private direct-booking code is: <strong>${code}</strong>. Use it when booking directly through our official website.`,
     cta: 'Check availability',
